@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">MCash</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_basket">Basket</string>
+    <string name="plus">+</string>
+    <string name="title_payment">Payment</string>
+    <string name="label_null_€">0,00 €</string>
+    <string name="lable_clear">Clear</string>
+    <string name="sign_discount">%</string>
+    <string name="label_ok">Ok</string>
+    <string name="label_login">Login</string>
+    <string name="label_to_pay">To pay :</string>
+    <string name="label_cash">Cash :</string>
+    <string name="mwst">Mwst. :</string>
+    <string name="example_date">07.03.2015</string>
+    <string name="cancellation">Cancellation</string>
+    <string name="example_time">00:00</string>
+    <string name="example_name">Max Mustermann</string>
+    <string name="payent_details">Paymentdetails</string>
+    <string name="_null">0</string>
+    <string name="exampl_status">Status</string>
+    <string name="title_payments">Payments</string>
+    <string name="title_products">Products</string>
+</resources>
