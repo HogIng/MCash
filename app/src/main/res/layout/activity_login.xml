@@ -9,18 +9,9 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
+        android:orientation="vertical"
         android:layout_centerVertical="true"
-        android:orientation="vertical" >
-
-        <TextView
-            android:id="@+id/textView1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="@string/label_login"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="#404040" />
+        android:layout_centerHorizontal="true">
 
         <EditText
             android:id="@+id/editText1"
@@ -41,10 +32,19 @@
         <Button
             android:id="@+id/button1"
             android:layout_gravity="center"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="37dp"
             android:text="@string/label_ok"
             style="@style/button_green" />
 
     </LinearLayout>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView"
+        android:layout_marginTop="65dp"
+        android:src="@drawable/logo_2"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

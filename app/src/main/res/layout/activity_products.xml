@@ -3,7 +3,7 @@
     android:id="@+id/RelativeLayout4"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#d0d0d0"
+    android:background="#c0c0c0"
     android:orientation="vertical" >
 
     <RelativeLayout
@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:background="#dddddd"
+        android:background="#cccccc"
         android:padding="5dp" >
 
         <TextView
@@ -23,7 +23,7 @@
             android:layout_centerVertical="true"
             android:text="@string/title_products"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="#505050" />
+            android:textColor="#808080" />
 
         <ImageButton
             android:id="@+id/imageButton1"
@@ -33,6 +33,15 @@
             android:layout_centerVertical="true"
             android:background="@android:color/transparent"
             android:src="@drawable/button_menu" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView2"
+            android:src="@drawable/launcher_3_small"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
     </RelativeLayout>
 
     <GridView

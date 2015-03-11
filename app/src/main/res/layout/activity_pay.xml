@@ -22,7 +22,7 @@
                 android:layout_centerVertical="true"
                 android:text="@string/title_payment"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="#505050" />
+                android:textColor="#303030" />
 
             <ImageButton
                 android:id="@+id/imageButton1"
@@ -32,6 +32,15 @@
                 android:layout_centerVertical="true"
                 android:background="@android:color/transparent"
                 android:src="@drawable/button_menu" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageView5"
+                android:src="@drawable/launcher_3_small"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
         </RelativeLayout>
 
         <LinearLayout
