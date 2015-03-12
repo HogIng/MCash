@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#c0c0c0"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
     <RelativeLayout
         android:id="@+id/RelativeLayout2"
@@ -13,7 +13,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:background="#cccccc"
-        android:padding="5dp" >
+        android:padding="5dp">
 
         <TextView
             android:id="@+id/textView1"
@@ -35,22 +35,27 @@
             android:src="@drawable/button_menu" />
 
         <ImageView
+            android:id="@+id/imageView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/imageView2"
-            android:src="@drawable/launcher_3_small"
-            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
+            android:layout_centerVertical="true"
+            android:src="@drawable/launcher_1_small" />
     </RelativeLayout>
 
-    <GridView
-        android:id="@+id/gridView1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
+    <FrameLayout
+        android:id="@+id/products_container"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
         android:layout_below="@+id/RelativeLayout2"
-        android:numColumns="3" >
-    </GridView>
+        android:layout_centerHorizontal="true">
+
+        <fragment
+            class="com.example.inga.mcash.ProductsFragment"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"></fragment>
+        </FrameLayout>
+
 
 </RelativeLayout>

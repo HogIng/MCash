@@ -1,6 +1,8 @@
 package com.example.inga.mcash;
 
 import android.app.Activity;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -16,12 +18,21 @@ public class ProductsActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_products);
 
-/*        Button buttonLogin = (Button) findViewById(R.id.button1);
-        buttonLogin.setOnClickListener(new View.OnClickListener() {
+/*        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();*/
+
+       /* ProductsFragment fragment = new ProductsFragment();
+        fragmentTransaction.add(R.id.products_container, fragment);
+        fragmentTransaction.commit();*/
+
+        Button buttonBasket = (Button) findViewById(R.id.buttonBasket);
+        buttonBasket.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                Intent intent = new Intent(getApplicationContext(), BasketActivity.class);
+                startActivity(intent);
             }
-        });*/
+        });
+
     }
 }

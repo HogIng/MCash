@@ -38,7 +38,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/imageView6"
-            android:src="@drawable/launcher_3_small"
+            android:src="@drawable/launcher_1_small"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true" />
@@ -59,20 +59,11 @@
 
         </LinearLayout>
 
-        <RelativeLayout
-            android:id="@+id/RelativeLayout1"
+        <LinearLayout
+            android:id="@+id/LinearLayout3"
             android:layout_width="fill_parent"
-            android:layout_height="79dp"
+            android:layout_height="wrap_content"
             android:orientation="vertical" >
-
-            <Button
-                android:id="@+id/button1"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentRight="true"
-                android:layout_margin="6dp"
-                android:text="@string/title_payment"
-                style="@style/button_green"
-                android:layout_width="wrap_content" />
 
             <TextView
                 android:id="@+id/textView2"
@@ -84,51 +75,77 @@
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:padding="6dp"
                 android:textSize="22sp"
-                android:textColor="#ffffff" />
+                android:textColor="#ffffff"
+                android:layout_gravity="right"
+                android:layout_marginTop="6dp" />
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true">
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
 
-                <Button
-                    android:id="@+id/button2"
-                    android:text="@string/lable_clear"
-                    android:layout_margin="6dp"
-                    style="@style/button_red" />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:weightSum="1">
 
-                <Button
-                    android:id="@+id/button3"
-                    android:layout_width="40dp"
-                    android:layout_height="30dp"
-                    android:text="@string/sign_discount"
-                    android:textColor="#ffffff"
-                    android:textSize="15sp"
-                    android:background="#808080"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
-                    android:layout_marginTop="6dp"
-                    android:layout_marginRight="6dp"
-                    android:layout_marginBottom="6dp" />
+                    <Button
+                        android:id="@+id/button2"
+                        android:text="@string/lable_clear"
+                        android:layout_margin="6dp"
+                        style="@style/button_red" />
 
-                <Button
-                    android:id="@+id/button4"
-                    android:layout_width="40dp"
-                    android:layout_height="30dp"
-                    android:text="@string/plus"
-                    android:background="#808080"
-                    android:padding="6dp"
-                    android:textColor="#ffffff"
-                    android:textSize="15sp"
-                    android:layout_marginTop="6dp"
-                    android:layout_marginRight="6dp"
-                    android:layout_marginBottom="6dp" />
+                    <Button
+                        android:id="@+id/button3"
+                        android:layout_width="45dp"
+                        android:layout_height="35dp"
+                        android:text="@string/sign_discount"
+                        android:textColor="#ffffff"
+                        android:textSize="15sp"
+                        android:background="#808080"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:layout_marginTop="6dp"
+                        android:layout_marginRight="6dp"
+                        android:layout_marginBottom="6dp" />
+
+                    <Button
+                        android:id="@+id/button4"
+                        android:layout_width="45dp"
+                        android:layout_height="35dp"
+                        android:text="@string/plus"
+                        android:background="#808080"
+                        android:padding="6dp"
+                        android:textColor="#ffffff"
+                        android:textSize="15sp"
+                        android:layout_marginTop="6dp"
+                        android:layout_marginRight="6dp"
+                        android:layout_marginBottom="6dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="5.21">
+
+                    <Button
+                        android:id="@+id/button1"
+                        android:layout_margin="6dp"
+                        android:text="@string/title_payment"
+                        style="@style/button_green"
+                        android:layout_width="wrap_content"
+                        android:layout_height="35dp"
+                        android:layout_gravity="right" />
+                </LinearLayout>
 
             </LinearLayout>
 
-        </RelativeLayout>
+        </LinearLayout>
 
     </LinearLayout>
 
