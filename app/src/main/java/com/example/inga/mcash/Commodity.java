@@ -7,7 +7,8 @@ public class Commodity {
 
     private String name, image;
     private long id;
-    private float price;
+    private int price;
+    private int amount = 1;
 
     public Commodity() {
 
@@ -18,11 +19,15 @@ public class Commodity {
         this.id = id;
     }
 
+    public void setAmount(int amount) {
+        this.amount = amount;
+    }
+
     public void setName(String name) {
         this.name = name;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 
@@ -42,7 +47,11 @@ public class Commodity {
         return image;
     }
 
-    public Float getPrice(){
+    public int getPrice(){
         return price;
+    }
+
+    public int getAmount(){
+        return amount;
     }
 }

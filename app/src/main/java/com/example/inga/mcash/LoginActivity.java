@@ -2,6 +2,7 @@ package com.example.inga.mcash;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -26,12 +27,9 @@ public class LoginActivity extends Activity {
             @Override
             public void onClick(View v) {
                 basket = new Basket();
+
                 CommodityDataSource cDS = new CommodityDataSource(getApplicationContext());
                 cDS.open();
-
-                cDS.deleteCommodity(27);
-                cDS.deleteCommodity(28);
-
                 cDS.close();
                 Intent intent = new Intent(getApplicationContext(), ProductsActivity.class);
                 startActivity(intent);

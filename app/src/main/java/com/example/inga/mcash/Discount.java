@@ -8,13 +8,13 @@ public class Discount extends Commodity {
     private int percent;
 
 
-    public Discount(int percent,float totalAmount) {
+    public Discount(int percent,int totalAmount) {
         super();
         this.percent = percent;
         setPrice(totalAmount);
     }
 
-    public void setPrice(float totalAmount) {
+    public void setPrice(int totalAmount) {
         super.setPrice( - (totalAmount * (percent/100)));
     }
 }

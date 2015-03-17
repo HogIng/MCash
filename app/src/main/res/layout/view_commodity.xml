@@ -1,19 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="170dp"
-    android:layout_height="170dp"
-    android:background="#ffffff">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="180dp"
+    android:background="#eeeeee">
 
     <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:id="@+id/imageView_commodity"
         android:layout_gravity="center_horizontal"
-        android:layout_margin="10dp" />
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="10dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_above="@+id/relativeLayout2" />
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/relativeLayout2"
+        android:layout_margin="10dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -21,11 +30,9 @@
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:text="@string/label_null_€"
             android:id="@+id/textView_commodityprice"
-            android:layout_alignParentTop="true"
+            android:layout_alignTop="@+id/textView_commodityid"
             android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="5dp" />
+            android:layout_alignParentEnd="true" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -36,8 +43,6 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="5dp"
             android:textStyle="bold" />
 
         <TextView
@@ -49,14 +54,7 @@
             android:layout_below="@+id/textView_commodityname"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="5dp" />
+            android:layout_marginTop="3dp" />
     </RelativeLayout>
 
-    <ProgressBar
-        style="?android:attr/progressBarStyleLarge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/progressBar" />
-
-</LinearLayout>
+</RelativeLayout>

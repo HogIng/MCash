@@ -28,7 +28,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
             + TABLE_COMMODITY + "(" + COLUMN_ID
             + " integer primary key autoincrement, " + COLUMN_NAME
             + " text not null, " + COLUMN_PRICE
-            + " real not null, " + COLUMN_IMG
+            + " integer not null, " + COLUMN_IMG
             + " text);";
 
 

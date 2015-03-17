@@ -20,7 +20,7 @@
         <item name="android:layout_height">35dp</item>
         <item name="android:paddingRight">10dp</item>
         <item name="android:paddingLeft">10dp</item>
-        <item name="android:background">#158ea6</item>
+        <item name="android:background">#00a188</item>
         <item name="android:textColor">#ffffff</item>
         <item name="android:textSize">15sp</item>
     </style>

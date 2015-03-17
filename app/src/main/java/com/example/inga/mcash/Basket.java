@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class Basket {
 
     private ArrayList<Commodity> commodities;
-    private float totalAmount;
+    private int totalAmount;
 
     public Basket(){
         commodities = new ArrayList<Commodity>();
@@ -17,29 +17,61 @@ public class Basket {
 
 
     public void addCommodity(Commodity commodity){
-        commodities.add(commodity);
+        if(commodityAlreadyAdded(commodity)){
+            Commodity existingCommodity =getCommodityById(commodity.getId());
+            existingCommodity.setAmount(existingCommodity.getAmount()+1);
+        }
+        else {
+            commodities.add(commodity);
+        }
         setTotalAmount();
+    }
+
+    public Commodity getCommodityById(long id){
+        for(Commodity commodity :commodities) {
+            if(commodity.getId()==id){
+                return commodity;
+            }
+        }
+        return null;
+    }
+
+    public boolean commodityAlreadyAdded(Commodity commodityToAdd){
+        for(Commodity commodity :commodities) {
+            if(commodity.getId()==commodityToAdd.getId()){
+                return true;
+            }
+        }
+        return false;
     }
 
     public void setTotalAmount(){
         Discount discount= null;
+        totalAmount=0;
+
        for(Commodity com :commodities) {
            if (com instanceof Discount) discount = (Discount) com;
-           else totalAmount += com.getPrice();
+           else totalAmount += com.getPrice()*com.getAmount();
+           System.out.println(com.getAmount());
 
        }
        if (discount != null){
            totalAmount += discount.getPrice();
        }
-        //round amount
-        totalAmount = Math.round(totalAmount *100.0f)/100.0f;
+
     }
 
-    public float getTotalAmount(){
+    public int getTotalAmount(){
         return totalAmount;
     }
 
     public ArrayList<Commodity> getCommodities(){
         return commodities;
+    }
+
+    public void removeCommodities(){
+        commodities.clear();
+        commodities = new ArrayList<Commodity>();
+        totalAmount =0;
     }
 }

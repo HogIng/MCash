@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal|clip_horizontal">
+
+    <ListView
+        android:id="@+id/listView2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="false"
+        android:layout_above="@+id/linearLayout"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="6dp"
+        android:layout_marginLeft="6dp"
+        android:layout_marginRight="6dp"
+        android:layout_gravity="center"
+        android:dividerHeight="6dp"
+        android:divider="#c0c0c0" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <TextView
+            android:id="@+id/textView_totalamount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/button_payment"
+            android:layout_alignParentRight="true"
+            android:text="@string/label_null_€"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:padding="6dp"
+            android:textSize="22sp"
+            android:textColor="#ffffff"
+            android:layout_gravity="right"
+            android:layout_marginTop="6dp" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:weightSum="1" >
+
+                <Button
+                    style="@style/button_red"
+                    android:id="@+id/button_clear"
+                    android:text="@string/lable_clear"
+                    android:layout_margin="6dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp" />
+
+                <Button
+                    android:id="@+id/button_discount"
+                    android:layout_width="45dp"
+                    android:layout_height="35dp"
+                    android:text="@string/sign_discount"
+                    android:textColor="#ffffff"
+                    android:textSize="15sp"
+                    android:background="#808080"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginRight="6dp"
+                    android:layout_marginBottom="6dp" />
+
+                <Button
+                    android:id="@+id/button_manuel"
+                    android:layout_width="45dp"
+                    android:layout_height="35dp"
+                    android:text="@string/plus"
+                    android:background="#808080"
+                    android:padding="6dp"
+                    android:textColor="#ffffff"
+                    android:textSize="15sp"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginRight="6dp"
+                    android:layout_marginBottom="6dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="5.21" >
+
+                <Button
+                    style="@style/button_green"
+                    android:id="@+id/button_payment"
+                    android:layout_margin="6dp"
+                    android:text="@string/title_payment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:layout_gravity="right" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

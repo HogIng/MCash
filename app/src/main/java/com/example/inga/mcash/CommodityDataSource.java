@@ -36,10 +36,11 @@ package com.example.inga.mcash;
             dbHelper.close();
         }
 
-        public Commodity createCommodity(String name, String img, double price) {
+        public Commodity createCommodity(String name, String img, int price) {
             ContentValues values = new ContentValues();
             values.put(MySQLiteHelper.COLUMN_NAME, name);
             values.put(MySQLiteHelper.COLUMN_PRICE,price);
+            values.put(MySQLiteHelper.COLUMN_IMG,img);
             long insertId = database.insert(MySQLiteHelper.TABLE_COMMODITY, null,
                     values);
             Cursor cursor = database.query(MySQLiteHelper.TABLE_COMMODITY,
@@ -79,7 +80,7 @@ package com.example.inga.mcash;
             Commodity commodity = new Commodity();
             commodity.setId(cursor.getLong(0));
             commodity.setName(cursor.getString(1));
-            commodity.setPrice(cursor.getFloat(2));
+            commodity.setPrice(cursor.getInt(2));
             commodity.setImage(cursor.getString(3));
             return commodity;
         }

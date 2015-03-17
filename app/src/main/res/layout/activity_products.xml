@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:background="#cccccc"
+        android:background="#dddddd"
         android:padding="5dp">
 
         <TextView
@@ -41,21 +41,24 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:src="@drawable/launcher_1_small" />
+            android:src="@drawable/launcher_small" />
     </RelativeLayout>
 
     <FrameLayout
         android:id="@+id/products_container"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_below="@+id/RelativeLayout2"
-        android:layout_centerHorizontal="true">
+        android:layout_centerHorizontal="true"
+        android:foregroundGravity="center_horizontal|clip_horizontal"
+        android:layout_gravity="center">
 
         <fragment
             class="com.example.inga.mcash.ProductsFragment"
-            android:layout_width="fill_parent"
-            android:layout_height="match_parent"></fragment>
-        </FrameLayout>
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/products_fragment"></fragment>
+    </FrameLayout>
 
 
 </RelativeLayout>

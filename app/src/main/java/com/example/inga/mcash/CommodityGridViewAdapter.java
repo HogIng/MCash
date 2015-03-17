@@ -1,6 +1,8 @@
 package com.example.inga.mcash;
 
 import android.content.Context;
+import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,7 +10,12 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.lang.reflect.Field;
+import java.math.BigDecimal;
+import java.text.NumberFormat;
+import java.util.Currency;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by Inga on 12.03.2015.
@@ -35,18 +42,24 @@ public class CommodityGridViewAdapter extends ArrayAdapter<Commodity> {
         ImageView imageView = (ImageView) viewCommodity.findViewById(R.id.imageView_commodity);
 
         Commodity com = commodities.get(position);
+
         textViewName.setText(com.getName());
         textViewId.setText(String.valueOf(com.getId()));
-        textViewPrice.setText(String.valueOf(com.getPrice()));
 
-    /*    String s = values[position];
-        if (s.startsWith("Windows7") || s.startsWith("iPhone")
-                || s.startsWith("Solaris")) {
-            imageView.setImageResource(R.drawable.no);
-        } else {
-            imageView.setImageResource(R.drawable.ok);
-        }*/
+        int price = com.getPrice();
+        BigDecimal price2 = new BigDecimal(price).movePointLeft(2);
+        NumberFormat numberFormat =
+                NumberFormat.getCurrencyInstance();
+        textViewPrice.setText(numberFormat.format(price2));
+
+        if(com.getImage()!=null && com.getImage()!= "") {
+            int resourceID =
+                    context.getResources().getIdentifier(com.getImage(), "drawable",context.getPackageName());
+            imageView.setImageResource(resourceID);
+        }
 
         return viewCommodity;
     }
+
+
 }

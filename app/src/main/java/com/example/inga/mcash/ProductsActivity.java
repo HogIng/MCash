@@ -8,11 +8,17 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import java.math.BigDecimal;
+import java.text.NumberFormat;
+
 
 /**
  * Created by Inga on 08.03.2015.
  */
 public class ProductsActivity extends Activity {
+
+    private Button buttonBasket;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,7 +31,7 @@ public class ProductsActivity extends Activity {
         fragmentTransaction.add(R.id.products_container, fragment);
         fragmentTransaction.commit();*/
 
-        Button buttonBasket = (Button) findViewById(R.id.buttonBasket);
+        buttonBasket = (Button) findViewById(R.id.buttonBasket);
         buttonBasket.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -34,5 +40,16 @@ public class ProductsActivity extends Activity {
             }
         });
 
+    }
+
+    @Override
+    protected void onResume(){
+      super.onResume();
+
+        int price = LoginActivity.basket.getTotalAmount();
+        BigDecimal price2 = new BigDecimal(price).movePointLeft(2);
+        NumberFormat numberFormat =
+                NumberFormat.getCurrencyInstance();
+      buttonBasket.setText(numberFormat.format(price2));
     }
 }

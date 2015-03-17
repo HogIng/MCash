@@ -1,18 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="fill_parent">
+    android:layout_height="fill_parent"
+    android:gravity="center_horizontal">
 
     <GridView
         android:layout_width="wrap_content"
-        android:layout_height="fill_parent"
+        android:layout_height="match_parent"
         android:id="@+id/gridView_products"
         android:numColumns="2"
-        android:layout_alignParentLeft="true"
+        android:layout_alignParentLeft="false"
         android:layout_marginLeft="0dp"
         android:layout_alignParentTop="true"
         android:layout_marginTop="0dp"
-        android:layout_above="@+id/buttonBasket" />
+        android:layout_above="@+id/buttonBasket"
+        android:layout_gravity="center"
+        android:layout_centerHorizontal="true"
+        android:gravity="center_horizontal|clip_horizontal"
+        android:horizontalSpacing="6dp"
+        android:padding="6dp"
+        android:verticalSpacing="6dp" />
 
     <Button
         android:layout_width="wrap_content"
@@ -24,6 +31,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_margin="6dp" />
+        android:layout_marginRight="6dp"
+        android:layout_marginBottom="6dp" />
 
 </RelativeLayout>
