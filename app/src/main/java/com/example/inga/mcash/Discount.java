@@ -5,16 +5,25 @@ package com.example.inga.mcash;
  */
 public class Discount extends Commodity {
 
-    private int percent;
+    private int percentage;
 
 
-    public Discount(int percent,int totalAmount) {
+    public Discount() {
         super();
-        this.percent = percent;
-        setPrice(totalAmount);
     }
 
-    public void setPrice(int totalAmount) {
-        super.setPrice( - (totalAmount * (percent/100)));
+    public void calculatePrice(int totalAmount) {
+        float factor = percentage/100f;
+        super.setPrice((int) - (totalAmount * (factor)));
     }
+
+    public void setPercentage(int percentage){
+        this.percentage=percentage;
+    }
+
+    public int getPercentage(){
+        return percentage;
+    }
+
+
 }

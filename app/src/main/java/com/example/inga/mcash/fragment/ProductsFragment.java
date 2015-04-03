@@ -1,20 +1,21 @@
-package com.example.inga.mcash;
+package com.example.inga.mcash.fragment;
 
 import android.app.Fragment;
-import android.app.ListFragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.GridView;
-import android.widget.ListView;
 
-import java.math.BigDecimal;
-import java.text.NumberFormat;
-import java.util.ArrayList;
+import com.example.inga.mcash.Commodity;
+import com.example.inga.mcash.database.CommodityDataSource;
+import com.example.inga.mcash.adapter.CommodityGridViewAdapter;
+import com.example.inga.mcash.EuroFormat;
+import com.example.inga.mcash.activitiy.LoginActivity;
+import com.example.inga.mcash.R;
+
 import java.util.List;
 
 /**
@@ -40,6 +41,7 @@ public class ProductsFragment extends Fragment {
         CommodityDataSource cDS = new CommodityDataSource(getActivity());
         cDS.open();
         commodities = cDS.getAllCommodities();
+        cDS.close();
 
         if(commodities!=null) {
             CommodityGridViewAdapter cGVA = new CommodityGridViewAdapter(getActivity(), R.layout.view_commodity, commodities);
@@ -52,11 +54,7 @@ public class ProductsFragment extends Fragment {
                     Commodity com = (Commodity) adapter.getItemAtPosition(position);
                     LoginActivity.basket.addCommodity(com);
                     Button basketButton = (Button) getActivity().findViewById(R.id.buttonBasket);
-                    int price = LoginActivity.basket.getTotalAmount();
-                    BigDecimal price2 = new BigDecimal(price).movePointLeft(2);
-                    NumberFormat numberFormat =
-                            NumberFormat.getCurrencyInstance();
-                    basketButton.setText(numberFormat.format(price2));
+                    basketButton.setText(new EuroFormat().formatPrice(LoginActivity.basket.getTotalAmount()));
                 }
             });
         }

@@ -17,13 +17,15 @@ public class Basket {
 
 
     public void addCommodity(Commodity commodity){
-        if(commodityAlreadyAdded(commodity)){
-            Commodity existingCommodity =getCommodityById(commodity.getId());
-            existingCommodity.setAmount(existingCommodity.getAmount()+1);
-        }
-        else {
-            commodities.add(commodity);
-        }
+
+            if (commodity.getId()!=0&&commodityAlreadyAdded(commodity)) {
+                Commodity existingCommodity = getCommodityById(commodity.getId());
+                existingCommodity.setAmount(existingCommodity.getAmount() + 1);
+            } else {
+                commodity.setAmount(1);
+                commodities.add(commodity);
+            }
+
         setTotalAmount();
     }
 
@@ -46,16 +48,18 @@ public class Basket {
     }
 
     public void setTotalAmount(){
+
         Discount discount= null;
         totalAmount=0;
 
-       for(Commodity com :commodities) {
-           if (com instanceof Discount) discount = (Discount) com;
-           else totalAmount += com.getPrice()*com.getAmount();
-           System.out.println(com.getAmount());
-
+       for(Commodity com : commodities) {
+           if (com instanceof Discount){
+               discount = (Discount) com;}
+           else{
+               totalAmount += com.getPrice()*com.getAmount();}
        }
        if (discount != null){
+           discount.calculatePrice(totalAmount);
            totalAmount += discount.getPrice();
        }
 
@@ -71,7 +75,15 @@ public class Basket {
 
     public void removeCommodities(){
         commodities.clear();
-        commodities = new ArrayList<Commodity>();
         totalAmount =0;
+    }
+
+    public void deleteCommodity(long id){
+        commodities.remove(getCommodityById(id));
+        setTotalAmount();
+    }
+
+    public int getSize(){
+        return commodities.size();
     }
 }

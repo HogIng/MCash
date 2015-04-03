@@ -6,16 +6,15 @@ package com.example.inga.mcash;
 public class Commodity {
 
     private String name, image;
-    private long id;
+    private int id;
     private int price;
-    private int amount = 1;
+    private int amount;
 
     public Commodity() {
-
+        amount=1;
     }
 
-    public void setId(long id) {
-
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -35,7 +34,7 @@ public class Commodity {
         this.image = image;
     }
 
-    public long getId(){
+    public int getId(){
         return id;
     }
 

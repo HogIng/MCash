@@ -2,110 +2,88 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#d0d0d0"
-    android:gravity="clip_horizontal" >
+    android:background="#ffcecece"
+    android:gravity="clip_horizontal">
 
-        <RelativeLayout
-            android:id="@+id/RelativeLayout4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:background="#eeeeee"
-            android:padding="5dp" >
+    <include
+        android:id="@+id/include4"
+        layout="@layout/navigationbar"
+        android:layout_width="wrap_content"
+        android:layout_height="45dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
 
-            <TextView
-                android:id="@+id/textView1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                android:text="@string/title_payment"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="#303030" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/linearLayout6"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="50dp"
+        android:background="#ffffff"
+        android:padding="4dp">
 
-            <ImageButton
-                android:id="@+id/imageButton1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
-                android:background="@android:color/transparent"
-                android:src="@drawable/button_menu" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/imageView5"
-                android:src="@drawable/launcher_small"
-                android:layout_centerVertical="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true" />
-        </RelativeLayout>
-
-        <LinearLayout
+        <TextView
+            android:id="@+id/textView_header"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_below="@+id/RelativeLayout4"
-            android:layout_marginTop="50dp"
-            android:orientation="vertical" >
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="10dp"
+            android:text="@string/total_amount"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#4c4c4c" />
 
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:text="@string/label_to_pay"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="#505050" />
-
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="15dp"
-                android:text="@string/label_null_€"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="#ce5f5d"
-                android:textSize="30sp" />
-
-            <View
-                android:id="@+id/view1"
-                android:layout_width="wrap_content"
-                android:layout_height="1dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="40dp"
-                android:layout_marginRight="40dp"
-                android:layout_marginTop="20dp"
-                android:background="#808080" />
-
-            <TextView
-                android:id="@+id/textView4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="50dp"
-                android:text="@string/label_cash"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="#505050" />
-
-            <EditText
-                android:id="@+id/editText1"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:ems="10"
-                android:inputType="numberDecimal" />
+        <RelativeLayout
+            android:id="@+id/linearLayout6"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:layout_below="@id/textView_header"
+            android:layout_centerHorizontal="true"
+            android:background="#ececec">
 
             <Button
-                android:id="@+id/button1"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="15dp"
+                android:id="@+id/button_change"
                 style="@style/button_green"
+                android:layout_width="match_parent"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:text="@string/label_ok" />
+
+            <Button
+                android:id="@+id/button_pay"
+                style="@style/button_green"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_gravity="center_horizontal"
                 android:text="@string/label_ok"
-                />
-        </LinearLayout>
+                android:visibility="invisible"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true" />
+
+            <TextView
+                android:id="@+id/textView_amount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="@string/label_null_€"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="#ff4c4c4c"
+                android:textSize="45sp"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="50dp" />
+
+            <EditText
+                android:id="@+id/editText_cash"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/cash_amount"
+                android:inputType="numberDecimal"
+                android:layout_below="@+id/textView_amount"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp" />
+        </RelativeLayout>
+    </RelativeLayout>
 
 </RelativeLayout>

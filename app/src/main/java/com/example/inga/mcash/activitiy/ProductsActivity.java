@@ -1,28 +1,28 @@
-package com.example.inga.mcash;
+package com.example.inga.mcash.activitiy;
 
 import android.app.Activity;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import java.math.BigDecimal;
-import java.text.NumberFormat;
+import com.example.inga.mcash.EuroFormat;
+import com.example.inga.mcash.R;
+import com.example.inga.mcash.activitiy.BasketActivity;
+import com.example.inga.mcash.activitiy.LoginActivity;
 
 
 /**
  * Created by Inga on 08.03.2015.
  */
-public class ProductsActivity extends Activity {
+public class ProductsActivity extends BaseActivity {
 
     private Button buttonBasket;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_products);
 
 /*        FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();*/
@@ -37,19 +37,29 @@ public class ProductsActivity extends Activity {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), BasketActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
 
     }
 
     @Override
-    protected void onResume(){
-      super.onResume();
-
-        int price = LoginActivity.basket.getTotalAmount();
-        BigDecimal price2 = new BigDecimal(price).movePointLeft(2);
-        NumberFormat numberFormat =
-                NumberFormat.getCurrencyInstance();
-      buttonBasket.setText(numberFormat.format(price2));
+    protected int getLayoutResourceId() {
+        return R.layout.activity_products;
     }
+
+    @Override
+    protected int getTitleResourceId() {
+        return R.string.title_products;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        buttonBasket.setText(new EuroFormat().formatPrice(LoginActivity.basket.getTotalAmount()));
+
+    }
+
+
+
 }

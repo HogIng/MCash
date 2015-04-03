@@ -1,4 +1,4 @@
-package com.example.inga.mcash;
+package com.example.inga.mcash.adapter;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -9,6 +9,9 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.inga.mcash.Commodity;
+import com.example.inga.mcash.R;
 
 import java.lang.reflect.Field;
 import java.math.BigDecimal;
