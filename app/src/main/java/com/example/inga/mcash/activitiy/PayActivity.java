@@ -1,6 +1,5 @@
 package com.example.inga.mcash.activitiy;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -9,22 +8,23 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.inga.mcash.Commodity;
+import com.example.inga.mcash.Discount;
 import com.example.inga.mcash.Payment;
-import com.example.inga.mcash.PaymentActivity;
-import com.example.inga.mcash.PaymentDataSource;
-import com.example.inga.mcash.PaymentPositionDataSource;
+import com.example.inga.mcash.PaymentPosition;
+import com.example.inga.mcash.database.PaymentDataSource;
+import com.example.inga.mcash.database.PaymentPositionDataSource;
 import com.example.inga.mcash.R;
-import com.example.inga.mcash.activitiy.LoginActivity;
 
 import java.math.BigDecimal;
 import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
  * Created by Inga on 17.03.2015.
  */
-public class PayActivity extends Activity {
+public class PayActivity extends BaseActivity {
 
     private EditText editTextCash;
     private TextView textViewChange;
@@ -32,19 +32,16 @@ public class PayActivity extends Activity {
     private int totalAmount;
     private Button buttonChange;
     private Button buttonPay;
-    public static final String PAYMENT_ID = "paymentid";
+
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pay);
 
-
+        final TextView textViewHeader = (TextView) findViewById(R.id.textView_header);
         editTextCash =(EditText) findViewById(R.id.editText_cash);
-        textViewChange = (TextView) findViewById(R.id.textView_to_pay);
         totalAmount =  LoginActivity.basket.getTotalAmount();
         textViewAmount = (TextView) findViewById(R.id.textView_amount);
-
         textViewAmount.setText(formatPrice(totalAmount));
 
         buttonChange = (Button) findViewById(R.id.button_change);
@@ -53,26 +50,10 @@ public class PayActivity extends Activity {
         buttonPay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Payment payment = new Payment();
-                payment.setDate((int)new Date().getTime());
-                payment.setStatus(Payment.STATUS_COMPLETED);
-                payment.setTotalAmount(totalAmount);
-                payment.setCashier( LoginActivity.cashier.getId());
-                ArrayList<Commodity> commodities = LoginActivity.basket.getCommodities();
-                payment.setCommoditiesList(commodities);
-                PaymentDataSource pDS = new PaymentDataSource(getApplicationContext());
-                pDS.open();
-                long newId = pDS.createPayment(payment);
-                pDS.close();
-                PaymentPositionDataSource paymentPositionDataSource = new PaymentPositionDataSource(getApplicationContext());
-                paymentPositionDataSource.open();
-                for(int i = 0; i<commodities.size();i++){
-                    Commodity com = commodities.get(i);
-                    paymentPositionDataSource.createPosition((int) newId,com.getId(),com.getAmount());
-                }
-                paymentPositionDataSource.close();
+                long newId = savePayment();
+                LoginActivity.basket.removeCommodities();
                 Intent intent = new Intent(getApplicationContext(),PaymentActivity.class);
-                intent.putExtra(PAYMENT_ID,(int)newId);
+                intent.putExtra(PaymentActivity.PAYMENT_ID,(int)newId);
                 startActivity(intent);
                 finish();
             }
@@ -89,13 +70,13 @@ public class PayActivity extends Activity {
                     int cashInt = (int) (cash*100);
 
                     if(cashInt >= totalAmount){
-                        textViewChange.setText(R.string.change);
                         int change = cashInt - totalAmount;
-                        textViewAmount.setText(formatPrice(change));
-                        editTextCash.setVisibility(View.GONE);
-                        findViewById(R.id.textView_cash).setVisibility(View.GONE);
+                        textViewAmount.setText("- "+formatPrice(change));
+                        textViewAmount.setTextColor(getResources().getColor(R.color.red));
+                        editTextCash.setVisibility(View.INVISIBLE);
                         buttonChange.setVisibility(View.GONE);
                         buttonPay.setVisibility(View.VISIBLE);
+                        textViewHeader.setText(getResources().getString(R.string.change));
                     }
 
                     else{
@@ -107,10 +88,75 @@ public class PayActivity extends Activity {
 
     }
 
+    @Override
+    protected int getLayoutResourceId() {
+        return R.layout.activity_pay;
+    }
+
+    @Override
+    protected int getTitleResourceId() {
+        return R.string.title_payment;
+    }
+
     private CharSequence formatPrice(int price){
         NumberFormat numberFormat =
                 NumberFormat.getCurrencyInstance();
         BigDecimal price2 = new BigDecimal(price).movePointLeft(2);
         return numberFormat.format(price2);
+    }
+
+    private long savePayment(){
+        Payment payment = new Payment();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(new Date());
+
+        payment.setCalendar(calendar);
+        payment.setStatus(Payment.STATUS_COMPLETED);
+        payment.setTotalAmount(totalAmount);
+        payment.setCashier( LoginActivity.cashier.getId());
+        ArrayList<Commodity> commodities = LoginActivity.basket.getCommodities();
+        payment.setCommoditiesList(commodities);
+
+        PaymentDataSource pDS = new PaymentDataSource(getApplicationContext());
+        pDS.open();
+        int paymentId;
+        if(LoginActivity.basket.getOrderId()==0) {
+            paymentId =(int) pDS.createPayment(payment);
+        }
+        else{
+            paymentId = LoginActivity.basket.getOrderId();
+            payment.setId(paymentId);
+            pDS.updatePayment(payment);
+        }
+        pDS.close();
+
+        PaymentPositionDataSource paymentPositionDataSource = new PaymentPositionDataSource(getApplicationContext());
+        paymentPositionDataSource.open();
+
+        if(LoginActivity.basket.getOrderId()!=0) {
+            paymentPositionDataSource.deletePaymentPositionsOfPayment(paymentId);
+        }
+
+        for(Commodity com : commodities){
+            PaymentPosition pP = new PaymentPosition();
+            pP.setPaymentId(paymentId);
+            pP.setCommodityId(com.getId());
+            pP.setPrice(com.getPrice());
+            pP.setNumber(com.getAmount());
+            if(com instanceof Discount) {
+                pP.setPercentage(((Discount) com).getPercentage());
+            }
+            paymentPositionDataSource.createPosition(pP);
+        }
+        paymentPositionDataSource.close();
+        LoginActivity.basket.setOrderId(0);
+        return paymentId;
+    }
+
+    @Override
+    public void onBackPressed(){
+        Intent intent = new Intent(getApplicationContext(), BasketActivity.class);
+        startActivity(intent);
+        finish();
     }
 }

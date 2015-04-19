@@ -6,7 +6,7 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.example.inga.mcash.MySQLiteHelper;
+import com.example.inga.mcash.Payment;
 import com.example.inga.mcash.PaymentPosition;
 
 import java.util.ArrayList;
@@ -20,7 +20,7 @@ public class PaymentPositionDataSource {
     private SQLiteDatabase database;
     private MySQLiteHelper dbHelper;
     private String[] allColumns = {MySQLiteHelper.COLUMN_PAYMENTPOSITION_ID,
-            MySQLiteHelper.COLUMN_PAYMENTPOSITION_COMMOID, MySQLiteHelper.COLUMN_PAYMENTPOSITION_NUMBER};
+            MySQLiteHelper.COLUMN_PAYMENTPOSITION_COMMOID, MySQLiteHelper.COLUMN_PAYMENTPOSITION_NUMBER, MySQLiteHelper.COLUMN_PAYMENTPOSITION_PRICE,MySQLiteHelper.COLUMN_PAYMENTPOSITION_PERCENTAGE};
 
     public PaymentPositionDataSource(Context context) {
         dbHelper = new MySQLiteHelper(context);
@@ -34,24 +34,35 @@ public class PaymentPositionDataSource {
         dbHelper.close();
     }
 
-    public void createPosition(long paymentId, long commodityId, int number) {
+    public void createPosition(PaymentPosition pP) {
+        System.out.println("PaymentPosition created with id: " + pP.getPaymentId() + "," + pP.getCommodityId());
         ContentValues values = new ContentValues();
-        values.put(MySQLiteHelper.COLUMN_PAYMENTPOSITION_ID, paymentId);
-        values.put(MySQLiteHelper.COLUMN_PAYMENTPOSITION_COMMOID, commodityId);
-        values.put(MySQLiteHelper.COLUMN_PAYMENTPOSITION_NUMBER, number);
+        values.put(MySQLiteHelper.COLUMN_PAYMENTPOSITION_ID,pP.getPaymentId());
+        values.put(MySQLiteHelper.COLUMN_PAYMENTPOSITION_COMMOID, pP.getCommodityId());
+        values.put(MySQLiteHelper.COLUMN_PAYMENTPOSITION_NUMBER, pP.getNumber());
+        values.put(MySQLiteHelper.COLUMN_PAYMENTPOSITION_PRICE, pP.getPrice());
+        values.put(MySQLiteHelper.COLUMN_PAYMENTPOSITION_PERCENTAGE, pP.getPercentage());
+
         database.insert(MySQLiteHelper.TABLE_PAYMENTPOSITION, null,
                 values);
     }
 
     public void deletePaymentPosition(long paymentId, long commodityId) {
-
         System.out.println("PaymentPosition deleted with id: " + paymentId + "," + commodityId);
-
         String whereClause = MySQLiteHelper.COLUMN_PAYMENTPOSITION_ID+ " = ? and "+MySQLiteHelper.COLUMN_PAYMENTPOSITION_COMMOID +" = ?";
-        String[] values = new String[]{String.valueOf(paymentId),String.valueOf(commodityId)};
+        String[] whereArgs = new String[]{String.valueOf(paymentId),String.valueOf(commodityId)};
         database.delete(MySQLiteHelper.TABLE_PAYMENTPOSITION
-                , whereClause, values);
+                , whereClause, whereArgs);
     }
+
+    public void deletePaymentPositionsOfPayment(long paymentId) {
+        System.out.println("PaymentPositions deleted with id: " + paymentId );
+        String whereClause = MySQLiteHelper.COLUMN_PAYMENTPOSITION_ID+ " = ? ";
+        String[] whereArgs = new String[]{String.valueOf(paymentId)};
+        database.delete(MySQLiteHelper.TABLE_PAYMENTPOSITION
+                , whereClause, whereArgs);
+    }
+
 
 
     private PaymentPosition cursorToPaymentPosition(Cursor cursor) {
@@ -59,6 +70,8 @@ public class PaymentPositionDataSource {
         paymentPosition.setPaymentId(cursor.getInt(0));
         paymentPosition.setCommodityId(cursor.getInt(1));
         paymentPosition.setNumber(cursor.getInt(2));
+        paymentPosition.setPrice(cursor.getInt(3));
+        paymentPosition.setPercentage(cursor.getInt(4));
         return paymentPosition;
     }
 
@@ -78,5 +91,6 @@ public class PaymentPositionDataSource {
         cursor.close();
         return positions;
     }
+
 
 }

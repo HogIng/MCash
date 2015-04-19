@@ -9,45 +9,41 @@ import android.widget.ListView;
 
 import com.example.inga.mcash.Payment;
 import com.example.inga.mcash.R;
-import com.example.inga.mcash.fragment.PaymentFragment;
-import com.example.inga.mcash.fragment.PaymentsFragment;
+import com.example.inga.mcash.fragment.OrderFragment;
+import com.example.inga.mcash.fragment.OrdersFragment;
 
-/**
- * Created by Inga on 23.03.2015.
- */
-public class PaymentsActivity extends BaseActivity {
 
-    public static Payment payment;
+public class OrdersActivity extends BaseActivity {
+
     View selectedView;
-    private PaymentsFragment paymentsFragment;
-    private PaymentFragment paymentFragment;
+    private OrderFragment orderFragment;
+    private OrdersFragment ordersFragment;
 
     @Override
-      public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        paymentFragment = (PaymentFragment) getFragmentManager().findFragmentById(R.id.fragmentPayment);
-        paymentsFragment = (PaymentsFragment) getFragmentManager().findFragmentById(R.id.fragmentPayments);
-
+        ordersFragment = (OrdersFragment) getFragmentManager().findFragmentById(R.id.fragmentOrders);
+        orderFragment = (OrderFragment) getFragmentManager().findFragmentById(R.id.fragmentOrder);
         ListView listView = (ListView) findViewById(R.id.listView_payments);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapter, View v, int position,
                                     long arg3) {
                 Payment payment = (Payment) adapter.getItemAtPosition(position);
-                if (paymentFragment != null) {
+                if (orderFragment != null) {
                     if (selectedView != null) {
                         selectedView.setBackgroundColor(getResources().getColor(R.color.grey_lightest));
                     }
                     v.setBackgroundColor(getResources().getColor(R.color.grey_background));
                     selectedView = v;
-                    paymentFragment.setPayment(payment);
+                    orderFragment.setPayment(payment);
                 } else {
                     Intent intent = new Intent(getApplicationContext(), OrderActivity.class);
                     intent.putExtra(PaymentActivity.PAYMENT_ID, payment.getId());
                     startActivity(intent);
                     finish();
                 }
+
             }
         });
 
@@ -55,55 +51,52 @@ public class PaymentsActivity extends BaseActivity {
         buttonBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                paymentsFragment.selectDayBefor();
-                if(paymentFragment!=null){
-                    setPaymentToPaymentFragment();
+                ordersFragment.selectDayBefor();
+                if(orderFragment!=null){
+                    setPaymentToOrdertFragment();
                 }
-           }
+            }
         });
 
         Button buttonNext = (Button) findViewById(R.id.button_next);
         buttonNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                paymentsFragment.selectNextDay();
-                if(paymentFragment!=null) {
-                    setPaymentToPaymentFragment();
+                ordersFragment.selectNextDay();
+                if(orderFragment!=null){
+                    setPaymentToOrdertFragment();
                 }
             }
         });
 
-        if(paymentFragment!=null){
-            if(paymentsFragment.getPaymentsSelected().size()==0){
-                paymentFragment.showEmptyView();
+        if(orderFragment!=null){
+            if(ordersFragment.getPaymentsSelected().size()==0){
+                orderFragment.showEmptyView();
             }
             else{
-                paymentFragment.setPayment(paymentsFragment.getPaymentsSelected().get(0));
+                orderFragment.setPayment(ordersFragment.getPaymentsSelected().get(0));
             }
 
         }
-
     }
 
     @Override
     protected int getLayoutResourceId() {
-        return R.layout.activity_payments;
+        return R.layout.activity_orders;
     }
 
     @Override
     protected int getTitleResourceId() {
-        return R.string.title_payments;
+        return R.string.orders;
     }
 
-    private void setPaymentToPaymentFragment(){
-        if(paymentsFragment.getPaymentsSelected().size()>0){
-            paymentFragment.setPayment(paymentsFragment.getPaymentsSelected().get(0));
-            paymentFragment.hideEmptyView();
+    private void setPaymentToOrdertFragment(){
+        if(ordersFragment.getPaymentsSelected().size()>0){
+            orderFragment.setPayment(ordersFragment.getPaymentsSelected().get(0));
+            orderFragment.hideEmptyView();
         }
         else{
-            paymentFragment.showEmptyView();
+            orderFragment.showEmptyView();
         }
     }
-
-
 }

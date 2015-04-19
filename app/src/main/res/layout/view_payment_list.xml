@@ -1,5 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    android:layout_width="match_parent" android:layout_height="50dp"
+    android:background="#ffefefef"
+    android:padding="10dp">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/label_null_€"
+        android:id="@+id/textView_total"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:textColor="#404040"
+        android:textSize="18dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/_null"
+        android:id="@+id/textView_billnr_details"
+        android:textColor="#404040"
+        android:textSize="18dp"
+        android:layout_toRightOf="@+id/imageView2"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="5dp" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView2"
+        android:src="@drawable/bong"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView3"
+            android:src="@drawable/uhr"
+            android:layout_toRightOf="@+id/textView_billnr_details"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/example_date"
+            android:id="@+id/textView_time"
+            android:textColor="#404040"
+            android:textSize="18dp"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@+id/imageView3"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_vertical" />
+    </LinearLayout>
 </RelativeLayout>

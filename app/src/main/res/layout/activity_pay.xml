@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ffcecece"
@@ -14,14 +15,15 @@
         android:layout_centerHorizontal="true" />
 
     <RelativeLayout
-        android:layout_width="match_parent"
+        android:layout_width="750dp"
         android:layout_height="wrap_content"
         android:layout_above="@+id/linearLayout6"
-        android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:layout_marginRight="50dp"
         android:background="#ffffff"
-        android:padding="4dp">
+        android:padding="4dp"
+        android:id="@+id/relativeLayout"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
 
         <TextView
             android:id="@+id/textView_header"
@@ -37,7 +39,7 @@
         <RelativeLayout
             android:id="@+id/linearLayout6"
             android:layout_width="match_parent"
-            android:layout_height="250dp"
+            android:layout_height="300dp"
             android:layout_below="@id/textView_header"
             android:layout_centerHorizontal="true"
             android:background="#ececec">
@@ -70,9 +72,9 @@
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textColor="#ff4c4c4c"
                 android:textSize="45sp"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="50dp" />
+                android:layout_centerVertical="true"
+                android:layout_alignLeft="@+id/editText_cash"
+                android:layout_alignStart="@+id/editText_cash" />
 
             <EditText
                 android:id="@+id/editText_cash"
@@ -81,9 +83,19 @@
                 android:hint="@string/cash_amount"
                 android:inputType="numberDecimal"
                 android:layout_below="@+id/textView_amount"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="20dp" />
+                android:layout_centerHorizontal="true" />
         </RelativeLayout>
     </RelativeLayout>
+
+    <fragment
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:name="com.example.inga.mcash.fragment.BasketFragment"
+        android:id="@+id/fragment"
+        android:layout_toRightOf="@+id/relativeLayout"
+        android:layout_toEndOf="@+id/relativeLayout"
+        tools:layout="@layout/fragment_basket"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/include4" />
 
 </RelativeLayout>

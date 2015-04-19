@@ -7,7 +7,6 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.inga.mcash.Cashier;
-import com.example.inga.mcash.MySQLiteHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,8 +49,7 @@ public class CashierDataSource {
         return insertId;
     }
 
-    public void deletePayment(long id) {
-
+    public void deleteCashier(long id) {
         System.out.println("Cashier deleted with id: " + id);
         database.delete(MySQLiteHelper.TABLE_CASHIER, MySQLiteHelper.COLUMN_CASHIER_ID
                 + " = " + id, null);
@@ -59,10 +57,8 @@ public class CashierDataSource {
 
     public List<Cashier> getAllCashiers() {
         List<Cashier> cashiers = new ArrayList<Cashier>();
-
         Cursor cursor = database.query(MySQLiteHelper.TABLE_CASHIER,
                 allColumns, null, null, null, null, null);
-
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
             Cashier cashier = cursorToCashier(cursor);

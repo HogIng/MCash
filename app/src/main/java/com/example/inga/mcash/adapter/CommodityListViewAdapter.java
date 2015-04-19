@@ -1,6 +1,7 @@
 package com.example.inga.mcash.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,11 +11,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.inga.mcash.Commodity;
+import com.example.inga.mcash.Discount;
 import com.example.inga.mcash.R;
 
 import java.math.BigDecimal;
+import java.security.interfaces.DSAKey;
 import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.zip.DeflaterInputStream;
 
 /**
  * Created by Inga on 20.03.2015.
@@ -49,7 +53,25 @@ public class CommodityListViewAdapter extends ArrayAdapter<Commodity> {
 
         textViewName.setText(com.getName());
         textViewId.setText(String.valueOf(com.getId()));
-        textViewPrice.setText(formatPrice(com.getPrice()));
+
+        if(!(com instanceof Discount)){
+            textViewPrice.setText(formatPrice(com.getPrice()));
+
+        }
+        else{
+            Discount discount = (Discount) com;
+            textViewPrice.setText(String.valueOf(discount.getPercentage()) + " " + getContext().getString(R.string.sign_discount));
+            com.setImage("discount2");
+        }
+
+
+        if(com.getId()==0) {
+            textViewId.setVisibility(View.GONE);
+            if(!(com instanceof Discount)){
+                com.setImage("manual");
+            }
+        }
+
         textViewAmount.setText(formatPrice(com.getPrice()*com.getAmount()));
 
         if (com.getImage() != null && com.getImage() != "") {

@@ -22,6 +22,8 @@
         <activity android:name=".activitiy.PayActivity"></activity>
         <activity android:name=".activitiy.PaymentActivity"></activity>
         <activity android:name=".activitiy.PaymentsActivity"></activity>
+        <activity android:name=".activitiy.OrderActivity"></activity>
+        <activity android:name=".activitiy.OrdersActivity"></activity>
 
     </application>
 

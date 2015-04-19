@@ -47,6 +47,16 @@
     <string name="cancellation_question">Cancel payment?</string>
     <string name="shopping_cart_empty">The shopping cart is empty</string>
     <string name="no_payments">No payments found</string>
+    <string name="no_orders">No orders found</string>
     <string name="incorrect_message">Incorrect combination of id and password</string>
+    <string name="product_search">Product search</string>
+    <string name="search_hint">Name / Id / Price</string>
+    <string name="orders">Orders</string>
+    <string name="order">Order</string>
+    <string name="delete_order">Delete order</string>
+    <string name="edit_order">Edit order</string>
+    <string name="No_products">No products found</string>
+    <string name="no_payment_selected">No payment selected</string>
+    <string name="no_order_selected">No order selected</string>
 
 </resources>

@@ -5,13 +5,14 @@ package com.example.inga.mcash;
  */
 public class Commodity {
 
+    public static final int IS_GROUP = 1;
+    public static final int NOT_GROUP = 0;
+
     private String name, image;
-    private int id;
-    private int price;
-    private int amount;
+    private int id, price, amount, groupId, isGroup;
 
     public Commodity() {
-        amount=1;
+
     }
 
     public void setId(int id) {
@@ -34,6 +35,14 @@ public class Commodity {
         this.image = image;
     }
 
+    public void setGroupId(int groupId){
+        this.groupId=groupId;
+    }
+
+    public void setIsGroup(int isGroup){
+        this.isGroup= isGroup;
+    }
+
     public int getId(){
         return id;
     }
@@ -52,5 +61,13 @@ public class Commodity {
 
     public int getAmount(){
         return amount;
+    }
+
+    public int getGroupId() {
+        return groupId;
+    }
+
+    public int getIsGroup() {
+        return isGroup;
     }
 }

@@ -14,6 +14,7 @@ public class Payment {
     public static final int STATUS_COMPLETED = 0;
     public static final int STATUS_CANCELLED = 1;
     public static final int STATUS_CANCELLATION = 2;
+    public static final int STATUS_ORDERED = 3;
 
     private ArrayList<Commodity> commoditiesList;
     private int totalAmount, status, cashierID;
@@ -73,4 +74,5 @@ public class Payment {
     public ArrayList<Commodity> getCommodities(){
         return commoditiesList;
     }
+  
 }

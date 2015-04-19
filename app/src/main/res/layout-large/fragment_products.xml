@@ -3,34 +3,22 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="fill_parent"
     android:gravity="center_horizontal"
-    android:padding="8dp">
+    android:padding="10dp">
 
     <GridView
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:id="@+id/gridView_products"
-        android:numColumns="2"
+        android:numColumns="4"
         android:layout_alignParentLeft="false"
         android:layout_marginLeft="0dp"
         android:layout_alignParentTop="true"
-        android:layout_above="@+id/buttonBasket"
         android:layout_gravity="center"
         android:layout_centerHorizontal="true"
         android:gravity="center_horizontal|clip_horizontal"
-        android:horizontalSpacing="8dp"
-        android:verticalSpacing="8dp"
-        android:layout_alignParentBottom="false" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="35dp"
-        android:text="@string/label_null_€"
-        android:id="@+id/buttonBasket"
-        android:layout_gravity="right"
-        style="@style/button_green"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:horizontalSpacing="12dp"
+        android:verticalSpacing="12dp"
+        android:layout_above="@+id/button_back" />
 
     <ImageButton
         android:layout_width="wrap_content"
@@ -42,7 +30,7 @@
         android:src="@drawable/abc_ic_ab_back_mtrl_am_alpha"
         style="@style/button_grey"
         android:visibility="visible"
-        android:layout_marginRight="8dp" />
+        android:layout_marginRight="10dp" />
 
     <ImageButton
         android:layout_width="wrap_content"
@@ -58,7 +46,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/frameLayout_noProducts"
-        android:background="#ececec"
         android:visibility="gone"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true">
