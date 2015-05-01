@@ -48,7 +48,7 @@ public class PaymentFragment extends OrderFragment {
 
     }
 
-    private void cancelPayment(Payment paymentToCancel){
+    public void cancelPayment(Payment paymentToCancel){
         Payment payment = new Payment();
         Date date = new Date();
         Calendar calendar = Calendar.getInstance();
@@ -59,6 +59,7 @@ public class PaymentFragment extends OrderFragment {
         payment.setCashier(LoginActivity.cashier.getId());
         paymentDataSource.open();
         long newId =paymentDataSource.createPayment(payment);
+        payment.setId((int)newId);
 
         PaymentPositionDataSource paymentPositionDataSource = new PaymentPositionDataSource(getActivity());
         paymentPositionDataSource.open();
@@ -78,9 +79,6 @@ public class PaymentFragment extends OrderFragment {
         }
 
         paymentPositionDataSource.close();
-
-        payment.setCommoditiesList(commodities);
-
         paymentToCancel.setStatus(Payment.STATUS_CANCELLED);
         paymentDataSource.updatePayment(paymentToCancel);
         paymentDataSource.close();
@@ -105,36 +103,11 @@ public class PaymentFragment extends OrderFragment {
         }
         }
 
-    private void showCancelDialog(){
-        BaseDialog baseDialog = new BaseDialog() {
-            @Override
-            protected int getLayoutResourceId() {
-                return R.layout.dialog_cancellation;
-            }
 
-            @Override
-            protected int getTitleResourceId() {
-                return R.string.cancellation;
-            }
-
-            @Override
-            protected void doPositiveAction() {
-                cancelPayment(paymentSelected);
-            }
-        };
-
-        baseDialog.show(getFragmentManager(),"cancel_dialog");
-    }
 
     protected void initButtons(){
-
         buttonCancel = (Button) view1.findViewById(R.id.button_cancel);
-        buttonCancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-               showCancelDialog();
-            }
-        });
+
     }
 
 

@@ -9,6 +9,7 @@ import android.widget.ListView;
 
 import com.example.inga.mcash.Payment;
 import com.example.inga.mcash.R;
+import com.example.inga.mcash.dialog.BaseDialog;
 import com.example.inga.mcash.fragment.PaymentFragment;
 import com.example.inga.mcash.fragment.PaymentsFragment;
 
@@ -37,13 +38,13 @@ public class PaymentsActivity extends BaseActivity {
                 Payment payment = (Payment) adapter.getItemAtPosition(position);
                 if (paymentFragment != null) {
                     if (selectedView != null) {
-                        selectedView.setBackgroundColor(getResources().getColor(R.color.grey_lightest));
+                        selectedView.setBackgroundColor(getResources().getColor(R.color.grey_light_background));
                     }
                     v.setBackgroundColor(getResources().getColor(R.color.grey_background));
                     selectedView = v;
                     paymentFragment.setPayment(payment);
                 } else {
-                    Intent intent = new Intent(getApplicationContext(), OrderActivity.class);
+                    Intent intent = new Intent(getApplicationContext(), PaymentActivity.class);
                     intent.putExtra(PaymentActivity.PAYMENT_ID, payment.getId());
                     startActivity(intent);
                     finish();
@@ -81,7 +82,40 @@ public class PaymentsActivity extends BaseActivity {
                 paymentFragment.setPayment(paymentsFragment.getPaymentsSelected().get(0));
             }
 
+            Button buttonCancel = (Button) findViewById(R.id.button_cancel);
+            buttonCancel.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    BaseDialog baseDialog = new BaseDialog() {
+                        @Override
+                        protected int getLayoutResourceId() {
+                            return R.layout.dialog_cancellation;
+                        }
+
+                        @Override
+                        protected int getTitleResourceId() {
+                            return R.string.cancellation;
+                        }
+
+                        @Override
+                        protected void doPositiveAction() {
+                            paymentFragment.cancelPayment(paymentFragment.getPaymentSelected());
+                            paymentsFragment.selectToday();
+                            paymentsFragment.updateDataSet();
+                        }
+                    };
+
+                    baseDialog.show(getFragmentManager(),"cancel_dialog");
+                }
+            });
+
         }
+
+
+
+    }
+
+    private void showCancelDialog(){
 
     }
 

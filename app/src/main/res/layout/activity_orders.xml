@@ -4,12 +4,12 @@
     android:id="@+id/RelativeLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#cecece" >
+    android:background="@color/grey_light_background" >
 
     <include
         android:layout_width="wrap_content"
         android:layout_height="45dp"
-        layout="@layout/navigationbar"
+        layout="@layout/titlebar"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:id="@+id/include5" />
@@ -18,7 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:name="com.example.inga.mcash.fragment.OrdersFragment"
-        android:id="@+id/fragmentPayments"
+        android:id="@+id/fragmentOrders"
         android:layout_below="@+id/include5"
         android:layout_centerHorizontal="true"
         tools:layout="@layout/fragment_payments" />

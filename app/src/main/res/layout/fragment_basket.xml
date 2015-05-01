@@ -12,7 +12,7 @@
         android:layout_centerHorizontal="true"
         android:layout_gravity="center"
         android:dividerHeight="6dp"
-        android:divider="#cecece"
+        android:divider="@color/grey_light_background"
         android:layout_above="@+id/linearLayout"
         android:layout_below="@+id/frameLayout2" />
 
@@ -64,25 +64,29 @@
                     android:id="@+id/button_clear"
                     android:text="@string/lable_clear"
                     android:layout_width="wrap_content"
-                    android:layout_height="35dp"
-                    android:layout_marginRight="8dp" />
+                    android:layout_height="@dimen/button_height"
+                    android:layout_marginRight="8dp"
+                    android:background="@color/grey_dark" />
 
                 <Button
                     android:id="@+id/button_discount"
                     android:layout_width="50dp"
-                    android:layout_height="35dp"
+                    android:layout_height="@dimen/button_height"
                     android:text="@string/sign_discount"
                     android:textColor="#ffffff"
                     android:textSize="15sp"
                     android:layout_marginRight="8dp"
-                    style="@style/button_grey" />
+                    style="@style/button_grey"
+                    android:background="@color/grey_dark" />
 
                 <Button
                     android:id="@+id/button_manuel"
                     android:text="@string/plus"
                     style="@style/button_grey"
                     android:layout_marginRight="8dp"
-                    android:layout_width="50dp" />
+                    android:layout_width="50dp"
+                    android:background="@color/grey_dark"
+                    android:layout_height="@dimen/button_height" />
 
             </LinearLayout>
 
@@ -91,7 +95,8 @@
                 android:id="@+id/buttonOrder"
                 android:text="@string/order"
                 android:layout_width="match_parent"
-                android:layout_height="35dp" />
+                android:layout_height="@dimen/button_height"
+                android:background="@color/grey_dark" />
         </LinearLayout>
 
         <Button
@@ -99,9 +104,10 @@
             android:id="@+id/button_payment"
             android:text="@string/title_payment"
             android:layout_width="match_parent"
-            android:layout_height="35dp"
+            android:layout_height="@dimen/button_height"
             android:layout_gravity="right"
-            android:layout_marginTop="8dp" />
+            android:layout_marginTop="8dp"
+            android:background="@color/green" />
 
     </LinearLayout>
 
@@ -111,7 +117,6 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:id="@+id/frameLayout2"
-        android:background="#ececec"
         android:visibility="gone">
 
         <TextView
@@ -121,6 +126,7 @@
             android:text="@string/shopping_cart_empty"
             android:id="@+id/textView2"
             android:layout_gravity="center"
-            android:padding="20dp" />
+            android:padding="20dp"
+            android:textColor="@color/grey_dark" />
     </FrameLayout>
 </RelativeLayout>

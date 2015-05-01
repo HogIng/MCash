@@ -39,7 +39,6 @@ public class CommodityGridViewAdapter extends ArrayAdapter<Commodity> {
             viewCommodity = inflater.inflate(R.layout.view_commodity_group, parent, false);
         } else {
             viewCommodity = inflater.inflate(R.layout.view_commodity, parent, false);
-            TextView textViewId = (TextView) viewCommodity.findViewById(R.id.textView_commodityid);
             TextView textViewPrice = (TextView) viewCommodity.findViewById(R.id.textView_commodityprice);
             ImageView imageView = (ImageView) viewCommodity.findViewById(R.id.imageView_commodity);
             if (com.getImage() != null && com.getImage() != "") {
@@ -53,7 +52,6 @@ public class CommodityGridViewAdapter extends ArrayAdapter<Commodity> {
             NumberFormat numberFormat =
                     NumberFormat.getCurrencyInstance();
             textViewPrice.setText(numberFormat.format(price2));
-            textViewId.setText(String.valueOf(com.getId()));
         }
         TextView textViewName = (TextView) viewCommodity.findViewById(R.id.textView_commodityname);
         textViewName.setText(com.getName());

@@ -40,13 +40,11 @@ public class OrderFragment extends Fragment {
     PaymentDataSource paymentDataSource;
     Payment paymentSelected;
     TextView tVAmount;
-    Activity activity;
     View view1;
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view1 = inflater.inflate(R.layout.fragment_paymentdetails, container, false);
         paymentDataSource = new PaymentDataSource(getActivity());
         initButtons();
@@ -56,17 +54,12 @@ public class OrderFragment extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
-        activity = getActivity();
-
-
-
     }
 
 
     public void setPayment(Payment payment){
         paymentSelected=payment;
-        paymentSelected.setCommoditiesList(getCommoditiesOfPayment(payment));
+        paymentSelected.setCommoditiesList(getCommoditiesOfPayment(paymentSelected));
         EuroFormat euroFormat = new EuroFormat();
 
         tVAmount = (TextView) getView().findViewById(R.id.textView_totalAmount);
@@ -119,35 +112,14 @@ public class OrderFragment extends Fragment {
                     intent = new Intent(getActivity(), ProductsActivity.class);
                 }
                 startActivity(intent);
-                activity.finish();
+                getActivity().finish();
             }
         });
 
         Button buttonDeleteOrder = (Button) view1.findViewById(R.id.button_cancel);
         buttonDeleteOrder.setText(getString(R.string.delete_order));
         buttonDeleteOrder.setBackgroundColor(getResources().getColor(R.color.grey_dark));
-        buttonDeleteOrder.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                paymentDataSource.open();
-                int paymentId = paymentSelected.getId();
-                paymentDataSource.deletePayment(paymentId);
-                paymentDataSource.close();
-                if(LoginActivity.basket.getOrderId()==paymentId){
-                    LoginActivity.basket.setOrderId(0);
-                    LoginActivity.basket.removeCommodities();
-                }
-                PaymentPositionDataSource paymentPositionDataSource = new PaymentPositionDataSource(getActivity());
-                paymentPositionDataSource.open();
-                for(Commodity commodity: paymentSelected.getCommodities()) {
-                    paymentPositionDataSource.deletePaymentPosition(paymentId,commodity.getId());
-                }
-                paymentPositionDataSource.close();
-                Intent intent1 = new Intent(activity, OrdersActivity.class);
-                startActivity(intent1);
-                activity.finish();
-            }
-        });
+
     }
 
     private ArrayList<Commodity> getCommoditiesOfPayment(Payment payment) {
@@ -193,5 +165,28 @@ public class OrderFragment extends Fragment {
         getView().findViewById(R.id.relativeLayout_header_details).setVisibility(View.VISIBLE);
         getView().findViewById(R.id.relativeLayout_body_details).setVisibility(View.VISIBLE);
         getView().findViewById(R.id.textView_empty_details).setVisibility(View.GONE);
+    }
+
+    public void deleteOrder(){
+        paymentDataSource.open();
+        int paymentId = paymentSelected.getId();
+        paymentDataSource.deletePayment(paymentId);
+        paymentDataSource.close();
+
+        PaymentPositionDataSource paymentPositionDataSource = new PaymentPositionDataSource(getActivity());
+        paymentPositionDataSource.open();
+        for(Commodity commodity: paymentSelected.getCommodities()) {
+            paymentPositionDataSource.deletePaymentPosition(paymentId,commodity.getId());
+        }
+        paymentPositionDataSource.close();
+        if(LoginActivity.basket.getOrderId()==paymentId){
+            LoginActivity.basket.setOrderId(0);
+            LoginActivity.basket.removeCommodities();
+        }
+
+    }
+
+    public Payment getPaymentSelected(){
+        return paymentSelected;
     }
 }

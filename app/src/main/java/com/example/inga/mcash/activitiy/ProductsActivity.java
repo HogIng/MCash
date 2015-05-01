@@ -46,10 +46,7 @@ public class ProductsActivity extends BaseActivity implements AdapterView.OnItem
                 }
             });
         }
-        else {
-            Button buttonOrder = (Button) findViewById(R.id.buttonOrder);
 
-        }
 
     }
 
@@ -77,15 +74,21 @@ public class ProductsActivity extends BaseActivity implements AdapterView.OnItem
                     Button basketButton = (Button) findViewById(R.id.buttonBasket);
                     basketButton.setText(new EuroFormat().formatPrice(LoginActivity.basket.getTotalAmount()));
                 }
+                else{
+                    if(basketFragment!=null) {
+                        basketFragment.update();
+                    }
+                }
 
             } else {
                ProductsFragment productsFragment = (ProductsFragment) getFragmentManager().findFragmentById(R.id.products_fragment);
                 if(productsFragment!= null) {
                     productsFragment.showCommoditiesOfGroup(com);
                 }
+
             }
 
-            basketFragment.update();
+
 
     }
 }

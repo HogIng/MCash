@@ -51,8 +51,7 @@ public class PaymentsFragment extends Fragment {
         buttonNext = (Button)view1.findViewById(R.id.button_next);
 
         if(todaySelected()){
-            buttonNext.setClickable(false);
-            buttonNext.setBackgroundColor(getResources().getColor(R.color.green_light));
+            buttonNext.setVisibility(View.INVISIBLE);
         }
 
         textViewDay = (TextView) view1.findViewById(R.id.textViewDay);
@@ -77,8 +76,7 @@ public class PaymentsFragment extends Fragment {
     public void selectNextDay(){
         calendar.set(Calendar.DAY_OF_MONTH, calendar.get(Calendar.DAY_OF_MONTH)+1);
         if(todaySelected()){
-            buttonNext.setClickable(false);
-            buttonNext.setBackgroundColor(getResources().getColor(R.color.green_light));
+            buttonNext.setVisibility(View.INVISIBLE);
         }
         showPayments();
         showSelectedDayText();
@@ -86,8 +84,7 @@ public class PaymentsFragment extends Fragment {
 
     public void selectDayBefor(){
         calendar.set(Calendar.DAY_OF_MONTH, calendar.get(Calendar.DAY_OF_MONTH)-1);
-        buttonNext.setClickable(true);
-        buttonNext.setBackgroundColor(getResources().getColor(R.color.green));
+        buttonNext.setVisibility(View.VISIBLE);
         showPayments();
         showSelectedDayText();
     }
@@ -97,9 +94,13 @@ public class PaymentsFragment extends Fragment {
         textViewDay.setText(simpleDateFormat.format(calendar.getTime()));
     }
 
-    private void showPayments(){
+    public void showPayments(){
         setPayments();
         adapter.notifyDataSetChanged();
+    }
+
+    public void selectToday(){
+        calendar.setTime(new Date());
     }
 
     private void setPayments(){
@@ -151,6 +152,14 @@ public class PaymentsFragment extends Fragment {
 
     public ArrayList<Payment> getPaymentsSelected(){
         return  paymentsSelected;
+    }
+
+    public void updateDataSet(){
+        PaymentDataSource paymentDataSource = new PaymentDataSource(view1.getContext());
+        paymentDataSource.open();
+        payments = paymentDataSource.getPaymentsSortedByTime();
+        paymentDataSource.close();
+        showPayments();
     }
 
 

@@ -47,8 +47,10 @@ public class Basket {
     }
 
     public boolean commodityAlreadyAdded(Commodity commodityToAdd) {
-        if (commodities.contains(commodityToAdd)) {
-            return true;
+        for(Commodity com: commodities){
+            if(com.getId()==commodityToAdd.getId()&&com.getName().equalsIgnoreCase(commodityToAdd.getName())&&com.getPrice()==commodityToAdd.getPrice()){
+                return true;
+            }
         }
         return false;
     }

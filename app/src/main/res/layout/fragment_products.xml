@@ -23,18 +23,19 @@
 
     <Button
         android:layout_width="wrap_content"
-        android:layout_height="35dp"
+        android:layout_height="@dimen/button_height"
         android:text="@string/label_null_€"
         android:id="@+id/buttonBasket"
         android:layout_gravity="right"
         style="@style/button_green"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:background="@color/green" />
 
     <ImageButton
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/button_height"
         android:id="@+id/button_back"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
@@ -42,23 +43,24 @@
         android:src="@drawable/abc_ic_ab_back_mtrl_am_alpha"
         style="@style/button_grey"
         android:visibility="visible"
-        android:layout_marginRight="8dp" />
+        android:layout_marginRight="8dp"
+        android:background="@color/grey_dark" />
 
     <ImageButton
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/button_height"
         android:id="@+id/buttonSearch"
         android:layout_alignParentBottom="true"
         android:layout_toRightOf="@+id/button_back"
         android:layout_toEndOf="@+id/button_back"
         android:src="@drawable/abc_ic_search_api_mtrl_alpha"
-        style="@style/button_grey" />
+        style="@style/button_grey"
+        android:background="@color/grey_dark" />
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/frameLayout_noProducts"
-        android:background="#ececec"
         android:visibility="gone"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true">
@@ -70,7 +72,8 @@
             android:text="@string/No_products"
             android:id="@+id/textView3"
             android:layout_gravity="center"
-            android:padding="20dp" />
+            android:padding="20dp"
+            android:textColor="@color/grey_dark" />
     </FrameLayout>
 
 </RelativeLayout>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/grey_light_background">
+
+    <RelativeLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/linearLayout4"
+        android:background="@color/grey_lightest"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginLeft="40dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Large Text"
+            android:id="@+id/textViewDay"
+            android:layout_gravity="center_vertical"
+            android:textSize="18dp"
+            android:textColor="#ff404040"
+            android:layout_alignBaseline="@+id/button_next"
+            android:layout_alignBottom="@+id/button_next"
+            android:layout_centerHorizontal="true" />
+
+        <Button
+            android:layout_width="45dp"
+            android:layout_height="40dp"
+            android:text="@string/right"
+            android:id="@+id/button_next"
+            style="@style/button_green"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:background="@color/green" />
+
+        <Button
+            android:layout_width="45dp"
+            android:layout_height="40dp"
+            android:text="@string/left"
+            android:id="@+id/button_back"
+            style="@style/button_green"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:background="@color/green" />
+    </RelativeLayout>
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/listView_payments"
+        android:layout_gravity="center_horizontal"
+        android:layout_below="@+id/linearLayout4"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="12dp"
+        android:dividerHeight="1dp"
+        android:divider="#cecece"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:background="@color/grey_light_background" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/frameLayout3"
+        android:layout_alignTop="@+id/listView_payments"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="10dp"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/no_payments"
+            android:id="@+id/textViewEmpty"
+            android:layout_gravity="center"
+            android:padding="20dp"
+            android:textColor="@color/grey_dark" />
+    </FrameLayout>
+
+</RelativeLayout>

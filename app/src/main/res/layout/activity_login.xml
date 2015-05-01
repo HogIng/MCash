@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.project_c.LoginActivity"
-    android:background="#cecece">
+    android:background="@color/grey_light_background">
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -20,7 +20,8 @@
             android:id="@+id/imageView_error"
             android:layout_gravity="center_horizontal"
             android:src="@drawable/error"
-            android:visibility="invisible" />
+            android:visibility="invisible"
+            android:layout_marginTop="50dp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -58,7 +59,8 @@
             android:layout_marginTop="30dp"
             android:text="@string/label_ok"
             style="@style/button_green"
-            android:layout_marginBottom="30dp" />
+            android:layout_marginBottom="70dp"
+            android:background="@color/green" />
 
     </LinearLayout>
 
@@ -66,9 +68,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/imageView"
-        android:src="@drawable/textlogo11"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp" />
+        android:src="@drawable/logo"
+        android:layout_above="@+id/linearLayout8"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

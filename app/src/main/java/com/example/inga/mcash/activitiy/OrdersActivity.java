@@ -7,10 +7,14 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 
+import com.example.inga.mcash.Commodity;
 import com.example.inga.mcash.Payment;
 import com.example.inga.mcash.R;
+import com.example.inga.mcash.database.PaymentPositionDataSource;
 import com.example.inga.mcash.fragment.OrderFragment;
 import com.example.inga.mcash.fragment.OrdersFragment;
+
+import java.util.ArrayList;
 
 
 public class OrdersActivity extends BaseActivity {
@@ -53,7 +57,7 @@ public class OrdersActivity extends BaseActivity {
             public void onClick(View v) {
                 ordersFragment.selectDayBefor();
                 if(orderFragment!=null){
-                    setPaymentToOrdertFragment();
+                    setPaymentToOrderFragment();
                 }
             }
         });
@@ -64,10 +68,14 @@ public class OrdersActivity extends BaseActivity {
             public void onClick(View v) {
                 ordersFragment.selectNextDay();
                 if(orderFragment!=null){
-                    setPaymentToOrdertFragment();
+                    setPaymentToOrderFragment();
                 }
             }
         });
+
+
+
+
 
         if(orderFragment!=null){
             if(ordersFragment.getPaymentsSelected().size()==0){
@@ -76,7 +84,15 @@ public class OrdersActivity extends BaseActivity {
             else{
                 orderFragment.setPayment(ordersFragment.getPaymentsSelected().get(0));
             }
-
+            Button buttonDeleteOrder = (Button) findViewById(R.id.button_cancel);
+            buttonDeleteOrder.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    orderFragment.deleteOrder();
+                    ordersFragment.updateDataSet();
+                    setPaymentToOrderFragment();
+                }
+            });
         }
     }
 
@@ -90,7 +106,7 @@ public class OrdersActivity extends BaseActivity {
         return R.string.orders;
     }
 
-    private void setPaymentToOrdertFragment(){
+    private void setPaymentToOrderFragment(){
         if(ordersFragment.getPaymentsSelected().size()>0){
             orderFragment.setPayment(ordersFragment.getPaymentsSelected().get(0));
             orderFragment.hideEmptyView();

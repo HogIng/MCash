@@ -2,6 +2,8 @@ package com.example.inga.mcash.activitiy;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -24,6 +26,10 @@ public class LoginActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        if(screenIsLarge()){
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        }
 
 //        updateDB();
 
@@ -62,10 +68,15 @@ public class LoginActivity extends Activity {
         commodityDataSource.createCommodity("Fruchtshakes", "fruchtshakes", 0, 1, 1);
         commodityDataSource.createCommodity("Schokoladenkuchen", "schokokuchen", 325, 0, 0);
         commodityDataSource.createCommodity("Grüner Smoothie", "smoothie_gruen", 250, 4, 0);
+        commodityDataSource.createCommodity("Smootie Rotebeete", "smoothie_rotebeete", 275, 4, 0);
+        commodityDataSource.createCommodity("Latte Macchiato", "lattemacchiato", 295, 2, 0);
+        commodityDataSource.createCommodity("Esspresso", "esspresso", 195, 2, 0);
+        commodityDataSource.createCommodity("Erdnüsse", "erdnuesse", 200, 0, 0);
+        commodityDataSource.createCommodity("Tee versch. Sorten", "tee", 180, 1, 0);
         commodityDataSource.close();
         CashierDataSource cashierDataSource = new CashierDataSource(this);
         cashierDataSource.open();
-        cashierDataSource.createCashier("Inga", "Hogrefe", "inga");
+        cashierDataSource.createCashier("Inga", "Hogrefe", "12345");
         cashierDataSource.close();
 
     }
@@ -79,6 +90,15 @@ public class LoginActivity extends Activity {
             if (cashier != null && cashier.getPw().equalsIgnoreCase(pw)) {
                 return true;
             }
+        }
+        return false;
+    }
+
+    public boolean screenIsLarge() {
+        if ((getResources().getConfiguration().screenLayout &
+                Configuration.SCREENLAYOUT_SIZE_MASK) >=
+                Configuration.SCREENLAYOUT_SIZE_LARGE) {
+            return true;
         }
         return false;
     }

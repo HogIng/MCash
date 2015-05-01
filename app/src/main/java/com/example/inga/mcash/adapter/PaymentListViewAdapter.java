@@ -23,6 +23,7 @@ public class PaymentListViewAdapter extends ArrayAdapter<Payment> {
     Payment payment;
     Context context1;
     View viewPayment;
+    View firstView;
 
     public PaymentListViewAdapter(Context context, int resource, ArrayList<Payment> payments) {
         super(context, resource,payments);
@@ -34,7 +35,7 @@ public class PaymentListViewAdapter extends ArrayAdapter<Payment> {
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) context1.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         viewPayment = inflater.inflate(R.layout.view_payment_list, parent, false);
-        viewPayment.setBackgroundColor(context1.getResources().getColor(R.color.grey_lightest));
+        viewPayment.setBackgroundColor(context1.getResources().getColor(R.color.grey_light_background));
         TextView textViewTime = (TextView) viewPayment.findViewById(R.id.textView_time);
         TextView textViewId = (TextView) viewPayment.findViewById(R.id.textView_billnr_details);
         TextView textViewAmount = (TextView) viewPayment.findViewById(R.id.textView_total);
@@ -60,4 +61,5 @@ public class PaymentListViewAdapter extends ArrayAdapter<Payment> {
         BigDecimal price2 = new BigDecimal(price).movePointLeft(2);
         return numberFormat.format(price2);
     }
+
 }

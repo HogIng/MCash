@@ -62,8 +62,6 @@ public class BasketFragment extends Fragment {
         layoutEmptyMessage = (FrameLayout) activity.findViewById(R.id.frameLayout2);
         textViewTotal = (TextView) activity.findViewById(R.id.textView_totalamount);
 
-        ArrayList<Commodity> commodities;
-        commodities = LoginActivity.basket.getCommodities();
 
 
         Button buttonPay = (Button) activity.findViewById(R.id.button_payment);
@@ -96,7 +94,7 @@ public class BasketFragment extends Fragment {
         });
 
 
-        if (commodities.size() == 0) {
+        if (LoginActivity.basket.getCommodities().size() == 0) {
             layoutEmptyMessage.setVisibility(View.VISIBLE);
             buttonPay.setClickable(false);
             buttonOrder.setClickable(false);
@@ -105,7 +103,7 @@ public class BasketFragment extends Fragment {
 
 
         ListView listView = (ListView) activity.findViewById(R.id.listView2);
-        adapter = new CommodityBasketListViewAdapter(activity, R.layout.view_commodity_list, commodities, textViewTotal, layoutEmptyMessage, buttonPay, buttonOrder);
+        adapter = new CommodityBasketListViewAdapter(activity, R.layout.view_commodity_list, LoginActivity.basket.getCommodities(), textViewTotal, layoutEmptyMessage, buttonPay, buttonOrder);
         listView.setAdapter(adapter);
 
 
@@ -135,8 +133,6 @@ public class BasketFragment extends Fragment {
                 showManualDialog();
             }
         });
-
-
 
         showTotal();
 
@@ -236,14 +232,12 @@ public class BasketFragment extends Fragment {
         Payment payment = new Payment();
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(new Date());
-
         payment.setCalendar(calendar);
         payment.setStatus(Payment.STATUS_ORDERED);
         payment.setTotalAmount(LoginActivity.basket.getTotalAmount());
         payment.setCashier( LoginActivity.cashier.getId());
         ArrayList<Commodity> commodities = LoginActivity.basket.getCommodities();
         payment.setCommoditiesList(commodities);
-
         PaymentDataSource pDS = new PaymentDataSource(activity);
         pDS.open();
         int paymentId;
@@ -256,15 +250,11 @@ public class BasketFragment extends Fragment {
             pDS.updatePayment(payment);
         }
         pDS.close();
-
         PaymentPositionDataSource paymentPositionDataSource = new PaymentPositionDataSource(activity);
         paymentPositionDataSource.open();
-
-
         if(LoginActivity.basket.getOrderId()!=0) {
             paymentPositionDataSource.deletePaymentPositionsOfPayment(paymentId);
         }
-
         for(Commodity com : commodities){
             System.out.println("PP: "+paymentId+" "+com.getId()+" "+com.getPrice()+" "+com.getAmount());
             PaymentPosition pP = new PaymentPosition();
@@ -277,9 +267,7 @@ public class BasketFragment extends Fragment {
             }
             paymentPositionDataSource.createPosition(pP);
         }
-
         paymentPositionDataSource.close();
-
         return paymentId;
     }
 
