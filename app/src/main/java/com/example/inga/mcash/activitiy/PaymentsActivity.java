@@ -9,6 +9,7 @@ import android.widget.ListView;
 
 import com.example.inga.mcash.Payment;
 import com.example.inga.mcash.R;
+import com.example.inga.mcash.adapter.PaymentListViewAdapter;
 import com.example.inga.mcash.dialog.BaseDialog;
 import com.example.inga.mcash.fragment.PaymentFragment;
 import com.example.inga.mcash.fragment.PaymentsFragment;
@@ -31,15 +32,17 @@ public class PaymentsActivity extends BaseActivity {
         paymentsFragment = (PaymentsFragment) getFragmentManager().findFragmentById(R.id.fragmentPayments);
 
         ListView listView = (ListView) findViewById(R.id.listView_payments);
+        final PaymentListViewAdapter paymentListViewAdapter =(PaymentListViewAdapter) listView.getAdapter();
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapter, View v, int position,
                                     long arg3) {
                 Payment payment = (Payment) adapter.getItemAtPosition(position);
                 if (paymentFragment != null) {
-                    if (selectedView != null) {
-                        selectedView.setBackgroundColor(getResources().getColor(R.color.grey_light_background));
+                    if(selectedView == null){
+                        selectedView = paymentListViewAdapter.getFirstView();
                     }
+                    selectedView.setBackgroundColor(getResources().getColor(R.color.grey_light_background));
                     v.setBackgroundColor(getResources().getColor(R.color.grey_background));
                     selectedView = v;
                     paymentFragment.setPayment(payment);

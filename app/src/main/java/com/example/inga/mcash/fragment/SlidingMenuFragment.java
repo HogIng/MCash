@@ -61,7 +61,8 @@ import java.util.ArrayList;
 
                 switch (position){
                     case 0:
-                        i = new Intent(activity, ProductsActivity.class);
+                            i = new Intent(activity, ProductsActivity.class);
+
                         break;
                     case 1:
                         if(screenIsLarge()){

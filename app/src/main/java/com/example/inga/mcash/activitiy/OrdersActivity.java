@@ -10,6 +10,7 @@ import android.widget.ListView;
 import com.example.inga.mcash.Commodity;
 import com.example.inga.mcash.Payment;
 import com.example.inga.mcash.R;
+import com.example.inga.mcash.adapter.PaymentListViewAdapter;
 import com.example.inga.mcash.database.PaymentPositionDataSource;
 import com.example.inga.mcash.fragment.OrderFragment;
 import com.example.inga.mcash.fragment.OrdersFragment;
@@ -28,16 +29,21 @@ public class OrdersActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         ordersFragment = (OrdersFragment) getFragmentManager().findFragmentById(R.id.fragmentOrders);
         orderFragment = (OrderFragment) getFragmentManager().findFragmentById(R.id.fragmentOrder);
+
         ListView listView = (ListView) findViewById(R.id.listView_payments);
+
+        final PaymentListViewAdapter paymentListViewAdapter =(PaymentListViewAdapter) listView.getAdapter();
+
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapter, View v, int position,
                                     long arg3) {
                 Payment payment = (Payment) adapter.getItemAtPosition(position);
                 if (orderFragment != null) {
-                    if (selectedView != null) {
-                        selectedView.setBackgroundColor(getResources().getColor(R.color.grey_lightest));
+                    if(selectedView == null){
+                        selectedView = paymentListViewAdapter.getFirstView();
                     }
+                    selectedView.setBackgroundColor(getResources().getColor(R.color.grey_light_background));
                     v.setBackgroundColor(getResources().getColor(R.color.grey_background));
                     selectedView = v;
                     orderFragment.setPayment(payment);

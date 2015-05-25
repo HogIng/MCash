@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.Fragment;
+import android.content.ActivityNotFoundException;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +16,7 @@ import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.inga.mcash.Commodity;
 import com.example.inga.mcash.EuroFormat;
@@ -39,6 +42,7 @@ public class ProductsFragment extends Fragment {
     Activity activity;
     CommodityGridViewAdapter cGVA;
     ImageButton buttonBack;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -81,6 +85,8 @@ public class ProductsFragment extends Fragment {
 
     }
 
+
+
     private void showSearchDialog() {
         DialogFragment newFragment = new BaseDialog() {
             EditText editTextValue;
@@ -103,10 +109,11 @@ public class ProductsFragment extends Fragment {
 
             @Override
             protected void doPositiveAction() {
-                buttonBack.setVisibility(View.VISIBLE);
+
                 editTextValue = (EditText) v.findViewById(R.id.editText_Search);
                 String valueStr = editTextValue.getText().toString();
                 if (!valueStr.equals("")) {
+                    buttonBack.setVisibility(View.VISIBLE);
                     String[] charsToReplace = new String[]{",", ".", "€", " "};
                     for (int i = 0; i < charsToReplace.length; i++) {
                         valueStr = valueStr.replace(charsToReplace[i], "");

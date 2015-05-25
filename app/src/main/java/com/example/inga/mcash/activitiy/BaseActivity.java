@@ -23,9 +23,6 @@ import java.util.ArrayList;
  */
 public abstract class BaseActivity extends SlidingFragmentActivity {
 
-    protected LinearLayout productsButt;
-    protected LinearLayout paymentsButt;
-    private SlidingMenu slidingMenu;
     public SlidingMenuFragment mFrag;
     public SlidingMenu sm;
 
