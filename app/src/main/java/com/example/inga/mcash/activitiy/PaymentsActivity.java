@@ -31,6 +31,7 @@ public class PaymentsActivity extends BaseActivity {
         paymentFragment = (PaymentFragment) getFragmentManager().findFragmentById(R.id.fragmentPayment);
         paymentsFragment = (PaymentsFragment) getFragmentManager().findFragmentById(R.id.fragmentPayments);
 
+
         ListView listView = (ListView) findViewById(R.id.listView_payments);
         final PaymentListViewAdapter paymentListViewAdapter =(PaymentListViewAdapter) listView.getAdapter();
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -78,6 +79,7 @@ public class PaymentsActivity extends BaseActivity {
         });
 
         if(paymentFragment!=null){
+
             if(paymentsFragment.getPaymentsSelected().size()==0){
                 paymentFragment.showEmptyView();
             }

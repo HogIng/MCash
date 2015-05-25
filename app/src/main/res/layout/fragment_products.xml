@@ -10,52 +10,67 @@
         android:layout_height="match_parent"
         android:id="@+id/gridView_products"
         android:numColumns="2"
-        android:layout_alignParentLeft="false"
-        android:layout_marginLeft="0dp"
         android:layout_alignParentTop="true"
-        android:layout_above="@+id/buttonBasket"
+        android:layout_above="@+id/bottom_buttons"
         android:layout_gravity="center"
         android:layout_centerHorizontal="true"
         android:gravity="center_horizontal|clip_horizontal"
         android:horizontalSpacing="8dp"
-        android:verticalSpacing="8dp"
-        android:layout_alignParentBottom="false" />
+        android:verticalSpacing="8dp" />
 
-    <Button
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_width="fill_parent"
         android:layout_height="@dimen/button_height"
-        android:text="@string/label_null_€"
-        android:id="@+id/buttonBasket"
-        android:layout_gravity="right"
-        style="@style/button_green"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:background="@color/green" />
+        android:id="@+id/bottom_buttons"
+        android:layout_alignParentBottom="true">
 
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/button_height"
-        android:id="@+id/button_back"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="false"
-        android:src="@drawable/abc_ic_ab_back_mtrl_am_alpha"
-        style="@style/button_grey"
-        android:visibility="visible"
-        android:layout_marginRight="8dp"
-        android:background="@color/grey_dark" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/button_height"
+            android:text="@string/label_null_€"
+            android:id="@+id/buttonBasket"
+            android:layout_gravity="right"
+            style="@style/button_green"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:background="@color/green" />
 
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/button_height"
-        android:id="@+id/buttonSearch"
-        android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@+id/button_back"
-        android:layout_toEndOf="@+id/button_back"
-        android:src="@drawable/abc_ic_search_api_mtrl_alpha"
-        style="@style/button_grey"
-        android:background="@color/grey_dark" />
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/button_height"
+            android:id="@+id/button_back"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="false"
+            android:src="@drawable/abc_ic_ab_back_mtrl_am_alpha"
+            style="@style/button_grey"
+            android:visibility="visible"
+            android:layout_marginRight="8dp"
+            android:background="@color/grey_dark" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/button_height"
+            android:id="@+id/buttonSearch"
+            android:layout_alignParentBottom="true"
+            android:layout_toRightOf="@+id/button_back"
+            android:layout_toEndOf="@+id/button_back"
+            android:src="@drawable/abc_ic_search_api_mtrl_alpha"
+            style="@style/button_grey"
+            android:background="@color/grey_dark" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/button_height"
+            android:text="Scan"
+            android:id="@+id/button_scan"
+            android:layout_alignParentBottom="true"
+            android:layout_toRightOf="@+id/buttonSearch"
+            android:layout_toEndOf="@+id/buttonSearch"
+            style="@style/button_grey"
+            android:layout_marginLeft="8dp" />
+    </RelativeLayout>
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -75,16 +90,5 @@
             android:padding="20dp"
             android:textColor="@color/grey_dark" />
     </FrameLayout>
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/button_height"
-        android:text="Scan"
-        android:id="@+id/button_scan"
-        android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@+id/buttonSearch"
-        android:layout_toEndOf="@+id/buttonSearch"
-        style="@style/button_grey"
-        android:layout_marginLeft="8dp" />
 
 </RelativeLayout>
