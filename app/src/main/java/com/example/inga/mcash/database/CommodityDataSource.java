@@ -22,7 +22,7 @@ public class CommodityDataSource {
     private SQLiteDatabase database;
     private MySQLiteHelper dbHelper;
     private String[] allColumns = {MySQLiteHelper.COLUMN_COMMO_ID,
-            MySQLiteHelper.COLUMN_COMMO_NAME, MySQLiteHelper.COLUMN_COMMO_PRICE, MySQLiteHelper.COLUMN_COMMO_IMG, MySQLiteHelper.COLUMN_COMMO_GROUP_ID, MySQLiteHelper.COLUMN_COMMO_IS_GROUP};
+            MySQLiteHelper.COLUMN_COMMO_NAME, MySQLiteHelper.COLUMN_COMMO_PRICE, MySQLiteHelper.COLUMN_COMMO_IMG, MySQLiteHelper.COLUMN_COMMO_GROUP_ID, MySQLiteHelper.COLUMN_COMMO_IS_GROUP, MySQLiteHelper.COLUMN_COMMO_EAN};
 
     public CommodityDataSource(Context context) {
         dbHelper = new MySQLiteHelper(context);
@@ -36,13 +36,14 @@ public class CommodityDataSource {
         dbHelper.close();
     }
 
-    public Commodity createCommodity(String name, String img, int price, int groupId,int isGroup) {
+    public Commodity createCommodity(String name, String img, int price, int groupId,int isGroup, String ean) {
         ContentValues values = new ContentValues();
         values.put(MySQLiteHelper.COLUMN_COMMO_NAME, name);
         values.put(MySQLiteHelper.COLUMN_COMMO_PRICE, price);
         values.put(MySQLiteHelper.COLUMN_COMMO_IMG, img);
         values.put(MySQLiteHelper.COLUMN_COMMO_GROUP_ID, groupId);
         values.put(MySQLiteHelper.COLUMN_COMMO_IS_GROUP, isGroup);
+        values.put(MySQLiteHelper.COLUMN_COMMO_EAN, ean);
         long insertId = database.insert(MySQLiteHelper.TABLE_COMMODITY, null,
                 values);
         Cursor cursor = database.query(MySQLiteHelper.TABLE_COMMODITY,
@@ -86,6 +87,7 @@ public class CommodityDataSource {
         commodity.setImage(cursor.getString(3));
         commodity.setGroupId(cursor.getInt(4));
         commodity.setIsGroup(cursor.getInt(5));
+        commodity.setEan(cursor.getString(6));
         return commodity;
     }
 
@@ -127,24 +129,6 @@ public class CommodityDataSource {
         return commoditiesOfGroup;
     }
 
-    public ArrayList<Commodity> getSearchedCommodities(String searchStr){
-        ArrayList<Commodity> commoditiesSearched= new ArrayList<>();
-        String whereClause = MySQLiteHelper.COLUMN_COMMO_NAME + " = ? " ;
-        String[] values = new String[]{searchStr};
 
-        Cursor cursor = database.query(MySQLiteHelper.TABLE_COMMODITY,
-                allColumns, whereClause, values, null, null, null);
-
-        cursor.moveToFirst();
-        while (!cursor.isAfterLast()) {
-            Commodity commodity = cursorToCommodity(cursor);
-            commoditiesSearched.add(commodity);
-            cursor.moveToNext();
-        }
-        // make sure to close the cursor
-        cursor.close();
-
-        return commoditiesSearched;
-    }
 
 }

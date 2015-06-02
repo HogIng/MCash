@@ -13,23 +13,17 @@
         layout="@layout/titlebar"
         android:id="@+id/include" />
 
-    <FrameLayout
-        android:id="@+id/products_container"
+    <fragment
+        class="com.example.inga.mcash.fragment.ProductsFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:id="@+id/products_fragment"
+        android:layout_gravity="center_horizontal|top"
+        tools:layout="@layout/fragment_products"
+        android:layout_below="@+id/include"
+        android:layout_alignParentBottom="false"
         android:layout_centerHorizontal="true"
-        android:foregroundGravity="center_horizontal|clip_horizontal"
-        android:layout_gravity="center"
-        android:layout_below="@+id/include">
-
-        <fragment
-            class="com.example.inga.mcash.fragment.ProductsFragment"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/products_fragment"
-            android:layout_gravity="center_horizontal|top"
-            tools:layout="@layout/fragment_products"></fragment>
-    </FrameLayout>
+        android:layout_alignWithParentIfMissing="false"></fragment>
 
 
 </RelativeLayout>

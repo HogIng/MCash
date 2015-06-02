@@ -62,21 +62,21 @@ public class LoginActivity extends Activity {
         mySQLiteHelper.onUpgrade(mySQLiteHelper.getWritableDatabase(), 4, 5);
         CommodityDataSource commodityDataSource = new CommodityDataSource(this);
         commodityDataSource.open();
-        commodityDataSource.createCommodity("Getränke", "", 0, 0, 1);
-        commodityDataSource.createCommodity("Kaffeegetränke", "", 0, 1, 1);
-        commodityDataSource.createCommodity("Cappuccino", "cappuccino", 280, 2, 0);
-        commodityDataSource.createCommodity("Fruchtshakes", "fruchtshakes", 0, 1, 1);
-        commodityDataSource.createCommodity("Schokoladenkuchen", "schokokuchen", 325, 0, 0);
-        commodityDataSource.createCommodity("Grüner Smoothie", "smoothie_gruen", 250, 4, 0);
-        commodityDataSource.createCommodity("Smootie Rotebeete", "smoothie_rotebeete", 275, 4, 0);
-        commodityDataSource.createCommodity("Latte Macchiato", "lattemacchiato", 295, 2, 0);
-        commodityDataSource.createCommodity("Esspresso", "esspresso", 195, 2, 0);
-        commodityDataSource.createCommodity("Erdnüsse", "erdnuesse", 200, 0, 0);
-        commodityDataSource.createCommodity("Tee versch. Sorten", "tee", 180, 1, 0);
+        commodityDataSource.createCommodity("Getränke", "", 0, 0, 1,null);
+        commodityDataSource.createCommodity("Kaffeegetränke", "", 0, 1, 1,null);
+        commodityDataSource.createCommodity("Cappuccino", "cappuccino", 280, 2, 0,"00457217");
+        commodityDataSource.createCommodity("Fruchtshakes", "fruchtshakes", 0, 1, 1,null);
+        commodityDataSource.createCommodity("Schokoladenkuchen", "schokokuchen", 325, 0, 0,"84690029");
+        commodityDataSource.createCommodity("Grüner Smoothie", "smoothie_gruen", 250, 4, 0,"06300036");
+        commodityDataSource.createCommodity("Smootie Rotebeete", "smoothie_rotebeete", 275, 4, 0,"51700041");
+        commodityDataSource.createCommodity("Latte Macchiato", "lattemacchiato", 295, 2, 0,"62877053");
+        commodityDataSource.createCommodity("Esspresso", "esspresso", 195, 2, 0,"01083064");
+        commodityDataSource.createCommodity("Erdnüsse", "erdnuesse", 200, 0, 0,"21030079");
+        commodityDataSource.createCommodity("Tee versch. Sorten", "tee", 180, 1, 0,"90650086");
         commodityDataSource.close();
         CashierDataSource cashierDataSource = new CashierDataSource(this);
         cashierDataSource.open();
-        cashierDataSource.createCashier("Inga", "Hogrefe", "12345");
+        cashierDataSource.createCashier("Max", "Mustermann", "1234");
         cashierDataSource.close();
 
     }

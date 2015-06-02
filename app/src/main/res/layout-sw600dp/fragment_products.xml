@@ -3,7 +3,8 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="fill_parent"
     android:gravity="center_horizontal"
-    android:background="@color/grey_light_background">
+    android:background="@color/grey_light_background"
+    android:padding="12dp">
 
     <GridView
         android:layout_width="wrap_content"
@@ -28,7 +29,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="false"
         android:src="@drawable/abc_ic_ab_back_mtrl_am_alpha"
-        style="@style/button_grey"
+        style="@style/button"
         android:visibility="visible"
         android:layout_marginRight="10dp"
         android:background="@color/grey_dark" />
@@ -41,7 +42,7 @@
         android:layout_toRightOf="@+id/button_back"
         android:layout_toEndOf="@+id/button_back"
         android:src="@drawable/abc_ic_search_api_mtrl_alpha"
-        style="@style/button_grey"
+        style="@style/button"
         android:background="@color/grey_dark" />
 
     <FrameLayout
@@ -64,7 +65,7 @@
     </FrameLayout>
 
     <Button
-        style="@style/button_grey"
+        style="@style/button"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/button_height"
         android:text="Scan"
@@ -72,6 +73,7 @@
         android:layout_alignParentBottom="true"
         android:layout_toRightOf="@+id/buttonSearch"
         android:layout_toEndOf="@+id/buttonSearch"
-        android:layout_marginLeft="8dp" />
+        android:layout_marginLeft="8dp"
+        android:background="@color/grey_dark"/>
 
 </RelativeLayout>

@@ -14,7 +14,7 @@
         android:dividerHeight="6dp"
         android:divider="@color/grey_light_background"
         android:layout_above="@+id/linearLayout"
-        android:layout_below="@+id/frameLayout2" />
+        android:layout_alignParentTop="true"/>
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -60,7 +60,7 @@
                 android:layout_alignParentStart="true">
 
                 <Button
-                    style="@style/button_grey"
+                    style="@style/button"
                     android:id="@+id/button_clear"
                     android:text="@string/lable_clear"
                     android:layout_width="wrap_content"
@@ -76,13 +76,13 @@
                     android:textColor="#ffffff"
                     android:textSize="15sp"
                     android:layout_marginRight="8dp"
-                    style="@style/button_grey"
+                    style="@style/button"
                     android:background="@color/grey_dark" />
 
                 <Button
                     android:id="@+id/button_manuel"
                     android:text="@string/plus"
-                    style="@style/button_grey"
+                    style="@style/button"
                     android:layout_marginRight="8dp"
                     android:layout_width="50dp"
                     android:background="@color/grey_dark"
@@ -91,7 +91,7 @@
             </LinearLayout>
 
             <Button
-                style="@style/button_grey"
+                style="@style/button"
                 android:id="@+id/buttonOrder"
                 android:text="@string/order"
                 android:layout_width="match_parent"
@@ -100,7 +100,7 @@
         </LinearLayout>
 
         <Button
-            style="@style/button_green"
+            style="@style/button"
             android:id="@+id/button_payment"
             android:text="@string/title_payment"
             android:layout_width="match_parent"

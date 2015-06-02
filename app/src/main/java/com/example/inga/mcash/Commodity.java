@@ -8,7 +8,7 @@ public class Commodity {
     public static final int IS_GROUP = 1;
     public static final int NOT_GROUP = 0;
 
-    private String name, image;
+    private String name, ean, image;
     private int id, price, amount, groupId, isGroup;
 
     public Commodity() {
@@ -43,6 +43,10 @@ public class Commodity {
         this.isGroup= isGroup;
     }
 
+    public void setEan(String ean){
+        this.ean=ean;
+    }
+
     public int getId(){
         return id;
     }
@@ -69,5 +73,9 @@ public class Commodity {
 
     public int getIsGroup() {
         return isGroup;
+    }
+
+    public String getEan(){
+        return ean;
     }
 }

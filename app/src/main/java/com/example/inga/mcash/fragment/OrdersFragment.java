@@ -17,15 +17,13 @@ public class OrdersFragment extends PaymentsFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return super.onCreateView(inflater,container,savedInstanceState);
+        View view = super.onCreateView(inflater,container,savedInstanceState);
+        TextView textViewEmpty = (TextView) view.findViewById(R.id.textViewEmpty);
+        textViewEmpty.setText(getString(R.string.no_orders));
+        return view;
     }
 
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        TextView textViewEmpty = (TextView) getActivity().findViewById(R.id.textViewEmpty);
-        textViewEmpty.setText(getString(R.string.no_orders));
-    }
+
 
     protected boolean paymentHasRightStatus(Payment payment){
         if(payment.getStatus()==Payment.STATUS_ORDERED){

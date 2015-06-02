@@ -10,9 +10,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_centerVertical="true"
+        android:id="@+id/linearLayout8"
+        android:layout_below="@+id/imageView"
         android:layout_centerHorizontal="true"
-        android:id="@+id/linearLayout8">
+        android:layout_marginTop="60dp">
 
         <ImageView
             android:layout_width="wrap_content"
@@ -20,8 +21,7 @@
             android:id="@+id/imageView_error"
             android:layout_gravity="center_horizontal"
             android:src="@drawable/error"
-            android:visibility="invisible"
-            android:layout_marginTop="50dp" />
+            android:visibility="gone" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -30,8 +30,8 @@
             android:text="@string/incorrect_message"
             android:id="@+id/textView_error"
             android:layout_gravity="center_horizontal"
-            android:padding="5dp"
-            android:visibility="invisible" />
+            android:visibility="gone"
+            android:layout_margin="10dp" />
 
         <EditText
             android:id="@+id/editText_id"
@@ -40,7 +40,7 @@
             android:ems="10"
             android:layout_gravity="center_horizontal"
             android:hint="@string/id"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="15dp"
             android:inputType="number" />
 
         <EditText
@@ -48,19 +48,21 @@
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="19dp"
+            android:layout_marginTop="15dp"
             android:ems="10"
             android:inputType="textPassword"
             android:hint="@string/password" />
 
         <Button
             android:id="@+id/button1"
+            android:layout_height="@dimen/button_height"
             android:layout_gravity="center"
             android:layout_marginTop="30dp"
             android:text="@string/label_ok"
-            style="@style/button_green"
+            style="@style/button"
             android:layout_marginBottom="70dp"
-            android:background="@color/green" />
+            android:background="@color/green"
+            android:layout_width="wrap_content" />
 
     </LinearLayout>
 
@@ -69,7 +71,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/imageView"
         android:src="@drawable/logo"
-        android:layout_above="@+id/linearLayout8"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="70dp" />
 
 </RelativeLayout>

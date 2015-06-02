@@ -194,10 +194,9 @@
         <Button
             android:text="@string/cancellation"
             android:id="@+id/button_cancel"
-            style="@style/button_red"
-            android:textSize="15sp"
+            style="@style/button"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="@dimen/button_height"
             android:visibility="visible"
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
@@ -223,7 +222,7 @@
             android:layout_marginRight="6dp" />
 
         <Button
-            style="@style/button_green"
+            style="@style/button"
             android:text="@string/edit_order"
             android:id="@+id/buttonPayOrder"
             android:textSize="15sp"

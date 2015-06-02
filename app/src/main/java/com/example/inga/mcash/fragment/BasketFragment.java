@@ -1,6 +1,5 @@
 package com.example.inga.mcash.fragment;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.Fragment;
@@ -15,7 +14,6 @@ import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.example.inga.mcash.Basket;
 import com.example.inga.mcash.Commodity;
 import com.example.inga.mcash.Discount;
 import com.example.inga.mcash.EuroFormat;
@@ -45,51 +43,40 @@ public class BasketFragment extends Fragment {
     private CommodityBasketListViewAdapter adapter;
     private TextView textViewTotal;
     private FrameLayout layoutEmptyMessage;
-    private Activity activity;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_basket, container, false);
-    }
+        View view = inflater.inflate(R.layout.fragment_basket, container, false);
+        layoutEmptyMessage = (FrameLayout) view.findViewById(R.id.frameLayout2);
+        textViewTotal = (TextView) view.findViewById(R.id.textView_totalamount);
 
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-
-        activity = getActivity();
-        layoutEmptyMessage = (FrameLayout) activity.findViewById(R.id.frameLayout2);
-        textViewTotal = (TextView) activity.findViewById(R.id.textView_totalamount);
-
-
-
-        Button buttonPay = (Button) activity.findViewById(R.id.button_payment);
+        Button buttonPay = (Button) view.findViewById(R.id.button_payment);
         buttonPay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), PayActivity.class);
                 startActivity(intent);
-                activity.finish();
+                getActivity().finish();
             }
         });
 
-        Button buttonOrder = (Button) activity.findViewById(R.id.buttonOrder);
+        Button buttonOrder = (Button) view.findViewById(R.id.buttonOrder);
         buttonOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 long newId = savePayment();
                 LoginActivity.basket.removeCommodities();
-                Intent intent= null;
-                if(activity instanceof ProductsActivity) {
-                    intent = new Intent(activity, OrdersActivity.class);
+                Intent intent = null;
+                if (getActivity() instanceof ProductsActivity) {
+                    intent = new Intent(getActivity(), OrdersActivity.class);
+                } else {
+                    intent = new Intent(getActivity(), OrderActivity.class);
                 }
-                else{
-                    intent = new Intent(activity, OrderActivity.class);
-                }
-                intent.putExtra(PaymentActivity.PAYMENT_ID,(int)newId);
+                intent.putExtra(PaymentActivity.PAYMENT_ID, (int) newId);
                 startActivity(intent);
-                activity.finish();
+                getActivity().finish();
             }
         });
 
@@ -101,13 +88,12 @@ public class BasketFragment extends Fragment {
         }
 
 
-
-        ListView listView = (ListView) activity.findViewById(R.id.listView2);
-        adapter = new CommodityBasketListViewAdapter(activity, R.layout.view_commodity_list, LoginActivity.basket.getCommodities(), textViewTotal, layoutEmptyMessage, buttonPay, buttonOrder);
+        ListView listView = (ListView) view.findViewById(R.id.listView2);
+        adapter = new CommodityBasketListViewAdapter(getActivity(), R.layout.view_commodity_list, LoginActivity.basket.getCommodities(), textViewTotal, layoutEmptyMessage, buttonPay, buttonOrder);
         listView.setAdapter(adapter);
 
 
-        Button clearButton = (Button) activity.findViewById(R.id.button_clear);
+        Button clearButton = (Button) view.findViewById(R.id.button_clear);
         clearButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -118,7 +104,7 @@ public class BasketFragment extends Fragment {
             }
         });
 
-        Button buttonDiscount = (Button) activity.findViewById(R.id.button_discount);
+        Button buttonDiscount = (Button) view.findViewById(R.id.button_discount);
         buttonDiscount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -126,7 +112,7 @@ public class BasketFragment extends Fragment {
             }
         });
 
-        Button buttonManual = (Button) activity.findViewById(R.id.button_manuel);
+        Button buttonManual = (Button) view.findViewById(R.id.button_manuel);
         buttonManual.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -136,7 +122,9 @@ public class BasketFragment extends Fragment {
 
         showTotal();
 
+        return view;
     }
+
 
     private void showTotal() {
         textViewTotal.setText(new EuroFormat().formatPrice(LoginActivity.basket.getTotalAmount()));
@@ -228,41 +216,40 @@ public class BasketFragment extends Fragment {
         newFragment.show(getFragmentManager(), "manual_dialog");
     }
 
-    public long savePayment(){
+    public long savePayment() {
         Payment payment = new Payment();
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(new Date());
         payment.setCalendar(calendar);
         payment.setStatus(Payment.STATUS_ORDERED);
         payment.setTotalAmount(LoginActivity.basket.getTotalAmount());
-        payment.setCashier( LoginActivity.cashier.getId());
+        payment.setCashier(LoginActivity.cashier.getId());
         ArrayList<Commodity> commodities = LoginActivity.basket.getCommodities();
         payment.setCommoditiesList(commodities);
-        PaymentDataSource pDS = new PaymentDataSource(activity);
+        PaymentDataSource pDS = new PaymentDataSource(getActivity());
         pDS.open();
         int paymentId;
-        if(LoginActivity.basket.getOrderId()==0) {
-            paymentId =(int) pDS.createPayment(payment);
-        }
-        else{
-            paymentId=LoginActivity.basket.getOrderId();
+        if (LoginActivity.basket.getOrderId() == 0) {
+            paymentId = (int) pDS.createPayment(payment);
+        } else {
+            paymentId = LoginActivity.basket.getOrderId();
             payment.setId(paymentId);
             pDS.updatePayment(payment);
         }
         pDS.close();
-        PaymentPositionDataSource paymentPositionDataSource = new PaymentPositionDataSource(activity);
+        PaymentPositionDataSource paymentPositionDataSource = new PaymentPositionDataSource(getActivity());
         paymentPositionDataSource.open();
-        if(LoginActivity.basket.getOrderId()!=0) {
+        if (LoginActivity.basket.getOrderId() != 0) {
             paymentPositionDataSource.deletePaymentPositionsOfPayment(paymentId);
         }
-        for(Commodity com : commodities){
-            System.out.println("PP: "+paymentId+" "+com.getId()+" "+com.getPrice()+" "+com.getAmount());
+        for (Commodity com : commodities) {
+            System.out.println("PP: " + paymentId + " " + com.getId() + " " + com.getPrice() + " " + com.getAmount());
             PaymentPosition pP = new PaymentPosition();
             pP.setPaymentId(paymentId);
             pP.setCommodityId(com.getId());
             pP.setPrice(com.getPrice());
             pP.setNumber(com.getAmount());
-            if(com instanceof Discount) {
+            if (com instanceof Discount) {
                 pP.setPercentage(((Discount) com).getPercentage());
             }
             paymentPositionDataSource.createPosition(pP);
@@ -271,11 +258,10 @@ public class BasketFragment extends Fragment {
         return paymentId;
     }
 
-    public void update(){
+    public void update() {
         adapter.notifyDataSetChanged();
         showTotal();
     }
-
 
 
 }

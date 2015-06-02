@@ -128,19 +128,26 @@ public class ProductsActivity extends BaseActivity implements AdapterView.OnItem
                 commodityDataSource.open();
                 String contents = intent.getStringExtra("SCAN_RESULT");
                 List<Commodity> commodities = commodityDataSource.getAllCommodities();
+                commodityDataSource.close();
                 if(commodities != null) {
                     boolean productFound = false;
                     for (Commodity commo : commodities) {
-                        if (String.valueOf(commo.getId()).equalsIgnoreCase(contents)) {
-                            LoginActivity.basket.addCommodity(commo);
-                            productFound=true;
-                            if(basketFragment!=null){
-                                basketFragment.update();
+                        String ean = commo.getEan();
+                        if(ean!=null) {
+                            if (ean.equalsIgnoreCase(contents)) {
+                                LoginActivity.basket.addCommodity(commo);
+                                productFound = true;
+                                if (basketFragment != null) {
+                                    basketFragment.update();
+                                }
+                                else{
+                                    buttonBasket.setText(new EuroFormat().formatPrice(LoginActivity.basket.getTotalAmount()));
+                                }
                             }
                         }
                     }
                     if(!productFound){
-                        Toast toast = Toast.makeText(this, "Product not found", Toast.LENGTH_LONG);
+                        Toast toast = Toast.makeText(this, contents, Toast.LENGTH_LONG);
                         toast.show();
                     }
                 }

@@ -30,7 +30,6 @@ import java.util.ArrayList;
     public class SlidingMenuFragment extends android.support.v4.app.Fragment{
 
     private ArrayList<MenuItem> items;
-    private ArrayList<Intent> intents;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

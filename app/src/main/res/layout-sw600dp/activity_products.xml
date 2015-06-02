@@ -13,43 +13,27 @@
         layout="@layout/titlebar"
         android:id="@+id/include" />
 
-    <FrameLayout
-        android:id="@+id/products_container"
-        android:layout_width="wrap_content"
+    <fragment
+        class="com.example.inga.mcash.fragment.ProductsFragment"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:foregroundGravity="center_horizontal|clip_horizontal"
-        android:layout_gravity="center"
+        android:id="@+id/products_fragment"
+        android:layout_gravity="left|top"
+        tools:layout="@layout/fragment_products"
+        android:layout_toStartOf="@+id/fragment_basket"
         android:layout_below="@+id/include"
-        android:padding="12dp">
+        android:layout_toLeftOf="@+id/fragment_basket"></fragment>
 
-        <fragment
-            class="com.example.inga.mcash.fragment.ProductsFragment"
-            android:layout_width="750dp"
-            android:layout_height="match_parent"
-            android:id="@+id/products_fragment"
-            android:layout_gravity="left|top"
-            tools:layout="@layout/fragment_products"></fragment>
-
-    </FrameLayout>
-
-    <FrameLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_alignParentBottom="true"
+    <fragment
+        android:layout_width="@dimen/fragment_width"
+        android:layout_height="wrap_content"
+        android:name="com.example.inga.mcash.fragment.BasketFragment"
+        android:id="@+id/fragment_basket"
+        android:layout_gravity="right|top"
+        tools:layout="@layout/fragment_basket"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_toRightOf="@+id/products_container"
-        android:layout_toEndOf="@+id/products_container"
-        android:layout_below="@+id/include">
-
-        <fragment
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:name="com.example.inga.mcash.fragment.BasketFragment"
-            android:id="@+id/fragment_basket"
-            android:layout_gravity="right|top"
-            tools:layout="@layout/fragment_basket" />
-    </FrameLayout>
+        android:layout_below="@+id/include" />
 
 
 </RelativeLayout>

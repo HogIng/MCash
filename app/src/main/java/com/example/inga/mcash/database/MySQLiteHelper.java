@@ -26,6 +26,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
     public static final String COLUMN_COMMO_IMG = "img";
     public static final String COLUMN_COMMO_GROUP_ID = "groupid";
     public static final String COLUMN_COMMO_IS_GROUP = "isgroup";
+    public static final String COLUMN_COMMO_EAN = "ean";
 
     //payment columnnames
     public static final String COLUMN_PAYMENT_ID = "id";
@@ -59,7 +60,8 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
             + " integer, " + COLUMN_COMMO_IMG
             + " text, " + COLUMN_COMMO_GROUP_ID
             + " integer," + COLUMN_COMMO_IS_GROUP
-            + " integer);";
+            + " integer, " + COLUMN_COMMO_EAN
+            + " text);";
 
     private static final String TABLE_PAYMENT_CREATE = "create table "
             + TABLE_PAYMENT + "(" + COLUMN_PAYMENT_ID

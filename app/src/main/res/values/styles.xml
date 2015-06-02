@@ -5,29 +5,10 @@
         <!-- Customize your theme here. -->
     </style>
 
-    <style name="button_red" >
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">35dp</item>
-        <item name="android:background">#ce5f5d</item>
-        <item name="android:paddingRight">10dp</item>
-        <item name="android:paddingLeft">10dp</item>
-        <item name="android:textSize">15sp</item>
-        <item name="android:textColor">#ffffff</item>
-    </style>
 
-    <style name="button_green">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">35dp</item>
-        <item name="android:paddingRight">10dp</item>
-        <item name="android:paddingLeft">10dp</item>
-        <item name="android:textColor">#ffffff</item>
-        <item name="android:textSize">15sp</item>
-    </style>
 
-    <style name="button_grey">
-        <item name="android:layout_width">45dp</item>
-        <item name="android:layout_height">35dp</item>
-        <item name="android:background">#808080</item>
+
+    <style name="button">
         <item name="android:padding">6dp</item>
         <item name="android:textColor">#ffffff</item>
         <item name="android:textSize">15sp</item>

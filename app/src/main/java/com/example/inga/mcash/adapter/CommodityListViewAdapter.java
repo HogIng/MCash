@@ -52,7 +52,7 @@ public class CommodityListViewAdapter extends ArrayAdapter<Commodity> {
         com = commodities.get(position);
 
         textViewName.setText(com.getName());
-        textViewId.setText(String.valueOf(com.getId()));
+
 
         if(!(com instanceof Discount)){
             textViewPrice.setText(formatPrice(com.getPrice()));
@@ -64,12 +64,16 @@ public class CommodityListViewAdapter extends ArrayAdapter<Commodity> {
             com.setImage("discount2");
         }
 
+        if(com.getId()==0&& !(com instanceof Discount)){
+            com.setImage("manuel");
+        }
 
-        if(com.getId()==0) {
+
+        if(com.getEan()==null || com.getEan().equalsIgnoreCase("")) {
             textViewId.setVisibility(View.GONE);
-            if(!(com instanceof Discount)){
-                com.setImage("manual");
-            }
+        }
+        else{
+            textViewId.setVisibility(View.GONE);
         }
 
         textViewAmount.setText(formatPrice(com.getPrice()*com.getAmount()));

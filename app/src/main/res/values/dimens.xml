@@ -3,6 +3,7 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="button_height">35dp</dimen>
+    <dimen name="fragment_width">350dp</dimen>
 
     <!-- sliding menu -->
     <dimen name="slidingMenu_offset">180dp</dimen>

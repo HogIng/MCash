@@ -39,14 +39,11 @@ public class PaymentFragment extends OrderFragment {
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-     return super.onCreateView(inflater,container,savedInstanceState);
+       View view = super.onCreateView(inflater,container,savedInstanceState);
+       ((TextView) view.findViewById(R.id.textView_empty_details)).setText(getString(R.string.no_payment_selected));
+       return view;
     }
 
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        ((TextView) getView().findViewById(R.id.textView_empty_details)).setText(getString(R.string.no_payment_selected));
-
-    }
 
     public void cancelPayment(Payment paymentToCancel){
         Payment payment = new Payment();

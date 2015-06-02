@@ -39,7 +39,6 @@ public class ProductsFragment extends Fragment {
     ArrayList<Commodity> commoditiesSelected;
     List<Commodity> commodities;
     TextView title;
-    Activity activity;
     CommodityGridViewAdapter cGVA;
     ImageButton buttonBack;
 
@@ -48,24 +47,15 @@ public class ProductsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_products, container, false);
-    }
+        View view = inflater.inflate(R.layout.fragment_products, container, false);
 
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-
-        activity = getActivity();
-
-        title = (TextView) activity.findViewById(R.id.textView_title);
-
-        cDS = new CommodityDataSource(activity);
+        cDS = new CommodityDataSource(getActivity());
         cDS.open();
         commodities = cDS.getAllCommodities();
         commoditiesSelected = cDS.getCommoditiesOfGroup(0);
         cDS.close();
 
-        ImageButton buttonSearch = (ImageButton) activity.findViewById(R.id.buttonSearch);
+        ImageButton buttonSearch = (ImageButton) view.findViewById(R.id.buttonSearch);
         buttonSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -73,16 +63,22 @@ public class ProductsFragment extends Fragment {
             }
         });
 
-        buttonBack = (ImageButton) activity.findViewById(R.id.button_back);
+        buttonBack = (ImageButton) view.findViewById(R.id.button_back);
         buttonBack.setVisibility(View.GONE);
         setBackButtonListenerProductsNotEmpty();
 
         if (commoditiesSelected != null) {
-            cGVA = new CommodityGridViewAdapter(activity, R.layout.view_commodity, commoditiesSelected);
-            GridView gridView = (GridView) activity.findViewById(R.id.gridView_products);
+            cGVA = new CommodityGridViewAdapter(getActivity(), R.layout.view_commodity, commoditiesSelected);
+            GridView gridView = (GridView) view.findViewById(R.id.gridView_products);
             gridView.setAdapter(cGVA);
         }
+        return view;
+    }
 
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState){
+        super.onActivityCreated(savedInstanceState);
+        title = (TextView) getActivity().findViewById(R.id.textView_title);
     }
 
 
@@ -143,11 +139,11 @@ public class ProductsFragment extends Fragment {
     }
 
     private void showEmptyView() {
-        activity.findViewById(R.id.frameLayout_noProducts).setVisibility(View.VISIBLE);
+        getActivity().findViewById(R.id.frameLayout_noProducts).setVisibility(View.VISIBLE);
     }
 
     private void hideEmptyView() {
-        activity.findViewById(R.id.frameLayout_noProducts).setVisibility(View.GONE);
+        getActivity().findViewById(R.id.frameLayout_noProducts).setVisibility(View.GONE);
     }
 
     private void setBackButtonListenerProductsNotEmpty() {

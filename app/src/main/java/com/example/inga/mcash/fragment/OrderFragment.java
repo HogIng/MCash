@@ -51,10 +51,7 @@ public class OrderFragment extends Fragment {
         return view1;
     }
 
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-    }
+
 
 
     public void setPayment(Payment payment){
