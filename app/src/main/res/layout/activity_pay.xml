@@ -8,22 +8,22 @@
 
     <include
         android:id="@+id/include4"
-        layout="@layout/titlebar"
+        layout="@layout/title_bar"
         android:layout_width="wrap_content"
         android:layout_height="45dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
     <RelativeLayout
-        android:layout_width="match_parent"
+        android:layout_width="600dp"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
         android:background="#ffffff"
         android:padding="4dp"
         android:id="@+id/relativeLayout"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:layout_margin="10dp">
+        android:layout_margin="10dp"
+        android:layout_centerInParent="true">
 
         <TextView
             android:id="@+id/textView_header"
@@ -71,13 +71,22 @@
                 android:layout_marginTop="40dp" />
 
             <RelativeLayout
-                android:layout_width="match_parent"
+                android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_alignStart="@+id/textView5"
                 android:layout_marginTop="40dp"
                 android:id="@+id/relativeLayout2"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true">
+                android:layout_centerHorizontal="true">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="@string/total"
+                    android:id="@+id/textView5"
+                    android:visibility="visible"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentLeft="true" />
 
                 <TextView
                     android:id="@+id/textView_amount"
@@ -87,39 +96,26 @@
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:textColor="#ff4c4c4c"
                     android:textSize="35sp"
-                    android:layout_gravity="center_vertical"
-                    android:layout_alignParentTop="true"
-                    android:layout_centerHorizontal="true" />
+                    android:layout_alignParentRight="true" />
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <FrameLayout
+                    android:layout_width="200dp"
                     android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="@string/total"
-                    android:id="@+id/textView5"
-                    android:layout_gravity="center_vertical"
-                    android:visibility="visible"
                     android:layout_centerVertical="true"
-                    android:layout_toLeftOf="@+id/textView_amount"
-                    android:layout_toStartOf="@+id/textView_amount"
-                    android:layout_marginRight="20dp" />
+                    android:layout_toRightOf="@+id/textView5"
+                    android:layout_toEndOf="@+id/textView5"
+                    android:id="@+id/frameLayout4">
+
+                </FrameLayout>
             </RelativeLayout>
 
             <RelativeLayout
-                android:layout_width="fill_parent"
+                android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/relativeLayout2"
                 android:layout_centerHorizontal="true"
                 android:id="@+id/relativeLayout3"
                 android:layout_marginTop="10dp">
-
-                <EditText
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/editText_cash"
-                    android:layout_alignParentTop="true"
-                    android:layout_centerHorizontal="true"
-                    android:inputType="numberDecimal" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -128,46 +124,50 @@
                     android:text="@string/cash"
                     android:id="@+id/textView4"
                     android:layout_centerVertical="true"
-                    android:layout_toLeftOf="@+id/editText_cash"
-                    android:layout_toStartOf="@+id/editText_cash"
+                    android:layout_alignParentLeft="true"
                     android:layout_marginRight="20dp" />
 
-                <TextView
-                    android:id="@+id/textView_cash"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/label_null_€"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:textColor="#ff4c4c4c"
-                    android:textSize="35sp"
-                    android:layout_gravity="center_vertical"
-                    android:layout_alignParentTop="true"
-                    android:layout_centerHorizontal="true"
-                    android:visibility="gone" />
+
+                    <EditText
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/editText_cash"
+                        android:layout_alignParentRight="true"
+                        android:inputType="numberDecimal" />
+
+                    <TextView
+                        android:id="@+id/textView_cash"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/label_null_€"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="#ff4c4c4c"
+                        android:textSize="35sp"
+                        android:layout_alignParentRight="true"
+                        android:visibility="gone" />
             </RelativeLayout>
 
             <FrameLayout
-                android:layout_width="fill_parent"
+                android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="@color/grey_dark"
                 android:layout_below="@+id/relativeLayout3"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_marginTop="30dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
                 android:id="@+id/frameLayout_divider"
                 android:visibility="gone"></FrameLayout>
 
             <RelativeLayout
-                android:layout_width="match_parent"
+                android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/relativeLayout_change"
+                android:visibility="gone"
                 android:layout_below="@+id/frameLayout_divider"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_marginTop="30dp"
-                android:visibility="gone">
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="30dp">
 
                 <TextView
                     android:id="@+id/textView_change"
@@ -178,9 +178,20 @@
                     android:textColor="@color/red"
                     android:textSize="35sp"
                     android:layout_gravity="center_vertical"
-                    android:layout_alignParentTop="true"
-                    android:layout_centerHorizontal="true"
-                    android:visibility="visible" />
+                    android:visibility="visible"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="@string/change"
+                    android:id="@+id/textView6"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />
 
             </RelativeLayout>
 

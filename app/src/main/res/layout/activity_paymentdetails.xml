@@ -6,9 +6,9 @@
 
 
     <include
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="45dp"
-        layout="@layout/titlebar"
+        layout="@layout/title_bar"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:id="@+id/include3" />
@@ -16,7 +16,7 @@
     <fragment
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:name="com.example.inga.mcash.fragment.PaymentFragment"
+        android:name="com.example.inga.mcash.fragment.PaymentDetailsFragment"
         android:id="@+id/fragmentPayment"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"

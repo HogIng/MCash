@@ -65,7 +65,7 @@ public class CommodityListViewAdapter extends ArrayAdapter<Commodity> {
         }
 
         if(com.getId()==0&& !(com instanceof Discount)){
-            com.setImage("manuel");
+            com.setImage("manual");
         }
 
 

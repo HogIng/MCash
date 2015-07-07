@@ -1,7 +1,6 @@
 package com.example.inga.mcash.activitiy;
 
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -60,8 +59,8 @@ public class PayActivity extends BaseActivity {
                 if (screenIsLarge()) {
                     intent = new Intent(getApplicationContext(), PaymentsActivity.class);
                 } else {
-                    intent = new Intent(getApplicationContext(), PaymentActivity.class);
-                    intent.putExtra(PaymentActivity.PAYMENT_ID, (int) newId);
+                    intent = new Intent(getApplicationContext(), PaymentDetailsActivity.class);
+                    intent.putExtra(PaymentDetailsActivity.PAYMENT_ID, (int) newId);
                 }
 
                 startActivity(intent);

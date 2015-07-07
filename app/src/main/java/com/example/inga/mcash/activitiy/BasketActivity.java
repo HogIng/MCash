@@ -1,6 +1,5 @@
 package com.example.inga.mcash.activitiy;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -26,8 +25,8 @@ public class BasketActivity extends BaseActivity {
                 public void onClick(View v) {
                     long newId = basketFragment.savePayment();
                     LoginActivity.basket.removeCommodities();
-                    Intent intent = new Intent(getApplicationContext(), OrdersActivity.class);
-                    intent.putExtra(PaymentActivity.PAYMENT_ID, (int) newId);
+                    Intent intent = new Intent(getApplicationContext(), OrderDetailsActivity.class);
+                    intent.putExtra(PaymentDetailsActivity.PAYMENT_ID, (int) newId);
                     startActivity(intent);
                     finish();
                 }

@@ -8,7 +8,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.inga.mcash.Commodity;
 import com.example.inga.mcash.MenuItem;
 import com.example.inga.mcash.R;
 
@@ -19,33 +18,26 @@ import java.util.ArrayList;
  */
 public class MenuItemAdapter extends ArrayAdapter<MenuItem> {
 
-    private Context context;
-    private  ArrayList<MenuItem> items;
-    protected View viewItem;
-
     public MenuItemAdapter(Context context, int resource,ArrayList<MenuItem> items) {
         super(context, resource,items);
-        this.context = context;
-        this.items = items;
 
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        LayoutInflater inflater = (LayoutInflater) context
+        LayoutInflater inflater = (LayoutInflater) getContext()
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        viewItem = inflater.inflate(R.layout.menu_item, parent, false);
+        View viewItem = inflater.inflate(R.layout.menu_item, parent, false);
         MenuItem menuItem = getItem(position);
 
         TextView textViewName = (TextView) viewItem.findViewById(R.id.textView_item_name);
-        String itemName = items.get(position).getName();
-        textViewName.setText(itemName);
+        textViewName.setText(menuItem.getName());
 
         ImageView imageView = (ImageView) viewItem.findViewById(R.id.imageView_menuIcon);
 
-        if(!items.get(position).getImg().equalsIgnoreCase("")) {
+        if(!menuItem.getImg().equalsIgnoreCase("")) {
             int resourceID =
-                    context.getResources().getIdentifier(menuItem.getImg(), "drawable", context.getPackageName());
+                    getContext().getResources().getIdentifier(menuItem.getImg(), "drawable", getContext().getPackageName());
             imageView.setImageResource(resourceID);
         }
 

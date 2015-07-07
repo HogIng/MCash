@@ -6,6 +6,8 @@
 
     <!-- sliding menu -->
     <dimen name="slidingMenu_offset">240dp</dimen>
+    <dimen name="menuItem_height">80dp</dimen>
 
-    <dimen name="fragment_width">350dp</dimen>
+
+    <dimen name="fragment_width">400dp</dimen>
 </resources>

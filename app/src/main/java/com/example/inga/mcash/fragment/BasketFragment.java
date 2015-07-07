@@ -21,10 +21,10 @@ import com.example.inga.mcash.Payment;
 import com.example.inga.mcash.PaymentPosition;
 import com.example.inga.mcash.R;
 import com.example.inga.mcash.activitiy.LoginActivity;
-import com.example.inga.mcash.activitiy.OrderActivity;
+import com.example.inga.mcash.activitiy.OrderDetailsActivity;
 import com.example.inga.mcash.activitiy.OrdersActivity;
 import com.example.inga.mcash.activitiy.PayActivity;
-import com.example.inga.mcash.activitiy.PaymentActivity;
+import com.example.inga.mcash.activitiy.PaymentDetailsActivity;
 import com.example.inga.mcash.activitiy.ProductsActivity;
 import com.example.inga.mcash.adapter.CommodityBasketListViewAdapter;
 import com.example.inga.mcash.database.PaymentDataSource;
@@ -72,9 +72,9 @@ public class BasketFragment extends Fragment {
                 if (getActivity() instanceof ProductsActivity) {
                     intent = new Intent(getActivity(), OrdersActivity.class);
                 } else {
-                    intent = new Intent(getActivity(), OrderActivity.class);
+                    intent = new Intent(getActivity(), OrderDetailsActivity.class);
                 }
-                intent.putExtra(PaymentActivity.PAYMENT_ID, (int) newId);
+                intent.putExtra(PaymentDetailsActivity.PAYMENT_ID, (int) newId);
                 startActivity(intent);
                 getActivity().finish();
             }

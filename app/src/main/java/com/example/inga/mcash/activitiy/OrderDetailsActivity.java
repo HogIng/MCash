@@ -7,10 +7,9 @@ import android.widget.Button;
 
 import com.example.inga.mcash.Payment;
 import com.example.inga.mcash.R;
-import com.example.inga.mcash.fragment.OrderFragment;
-import com.example.inga.mcash.fragment.PaymentFragment;
+import com.example.inga.mcash.fragment.OrderDetailsFragment;
 
-public class OrderActivity extends PaymentActivity{
+public class OrderDetailsActivity extends DetailsActivity {
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,8 +18,7 @@ public class OrderActivity extends PaymentActivity{
         buttonDeleteOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                OrderFragment orderFragment = (OrderFragment) getFragmentManager().findFragmentById(R.id.fragmentOrder);
-                orderFragment.deleteOrder();
+                ((OrderDetailsFragment)detailsFragment).deleteOrder();
                 Intent intent = new Intent(getApplicationContext(), OrdersActivity.class);
                 startActivity(intent);
                 finish();
@@ -29,7 +27,7 @@ public class OrderActivity extends PaymentActivity{
     }
 
     protected int getLayoutResourceId() {
-        return R.layout.activity_order;
+        return R.layout.activity_orderdetails;
     }
 
     protected int getTitleResourceId() {
@@ -42,8 +40,8 @@ public class OrderActivity extends PaymentActivity{
         finish();
     }
 
-    protected void setPayment(Payment payment1){
-        OrderFragment orderFragment = (OrderFragment) getFragmentManager().findFragmentById(R.id.fragmentOrder);
-        orderFragment.setPayment(payment1);
+    @Override
+    protected int getDetailsFragmentId() {
+        return R.id.fragmentOrder;
     }
 }

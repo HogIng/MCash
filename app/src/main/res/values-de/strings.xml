@@ -26,7 +26,7 @@
     <string name="title_paymentdetails">Zahlungsdetails</string>
     <string name="example_count">2x</string>
     <string name="minus">-</string>
-    <string name="change">Wechselgeld</string>
+    <string name="change">Rückgeld</string>
     <string name="logout">Logout</string>
     <string name="right"><![CDATA[>]]></string>
     <string name="left"><![CDATA[<]]></string>

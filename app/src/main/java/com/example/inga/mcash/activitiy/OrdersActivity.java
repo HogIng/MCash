@@ -3,100 +3,27 @@ package com.example.inga.mcash.activitiy;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.ListView;
 
-import com.example.inga.mcash.Commodity;
 import com.example.inga.mcash.Payment;
 import com.example.inga.mcash.R;
-import com.example.inga.mcash.adapter.PaymentListViewAdapter;
-import com.example.inga.mcash.database.PaymentPositionDataSource;
-import com.example.inga.mcash.fragment.OrderFragment;
+import com.example.inga.mcash.fragment.OrderDetailsFragment;
 import com.example.inga.mcash.fragment.OrdersFragment;
 
-import java.util.ArrayList;
 
-
-public class OrdersActivity extends BaseActivity {
-
-    View selectedView;
-    private OrderFragment orderFragment;
-    private OrdersFragment ordersFragment;
+public class OrdersActivity extends ListActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ordersFragment = (OrdersFragment) getFragmentManager().findFragmentById(R.id.fragmentOrders);
-        orderFragment = (OrderFragment) getFragmentManager().findFragmentById(R.id.fragmentOrder);
-
-        ListView listView = (ListView) findViewById(R.id.listView_payments);
-
-        final PaymentListViewAdapter paymentListViewAdapter =(PaymentListViewAdapter) listView.getAdapter();
-
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapter, View v, int position,
-                                    long arg3) {
-                Payment payment = (Payment) adapter.getItemAtPosition(position);
-                if (orderFragment != null) {
-                    if(selectedView == null){
-                        selectedView = paymentListViewAdapter.getFirstView();
-                    }
-                    selectedView.setBackgroundColor(getResources().getColor(R.color.grey_light_background));
-                    v.setBackgroundColor(getResources().getColor(R.color.grey_background));
-                    selectedView = v;
-                    orderFragment.setPayment(payment);
-                } else {
-                    Intent intent = new Intent(getApplicationContext(), OrderActivity.class);
-                    intent.putExtra(PaymentActivity.PAYMENT_ID, payment.getId());
-                    startActivity(intent);
-                    finish();
-                }
-
-            }
-        });
-
-        Button buttonBack = (Button) findViewById(R.id.button_back);
-        buttonBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ordersFragment.selectDayBefor();
-                if(orderFragment!=null){
-                    setPaymentToOrderFragment();
-                }
-            }
-        });
-
-        Button buttonNext = (Button) findViewById(R.id.button_next);
-        buttonNext.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ordersFragment.selectNextDay();
-                if(orderFragment!=null){
-                    setPaymentToOrderFragment();
-                }
-            }
-        });
-
-
-
-
-
-        if(orderFragment!=null){
-            if(ordersFragment.getPaymentsSelected().size()==0){
-                orderFragment.showEmptyView();
-            }
-            else{
-                orderFragment.setPayment(ordersFragment.getPaymentsSelected().get(0));
-            }
+        if (detailsFragment != null) {
             Button buttonDeleteOrder = (Button) findViewById(R.id.button_cancel);
             buttonDeleteOrder.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    orderFragment.deleteOrder();
-                    ordersFragment.updateDataSet();
-                    setPaymentToOrderFragment();
+                    ((OrderDetailsFragment) detailsFragment).deleteOrder();
+                    listFragment.updateDataSet();
+
                 }
             });
         }
@@ -112,13 +39,18 @@ public class OrdersActivity extends BaseActivity {
         return R.string.orders;
     }
 
-    private void setPaymentToOrderFragment(){
-        if(ordersFragment.getPaymentsSelected().size()>0){
-            orderFragment.setPayment(ordersFragment.getPaymentsSelected().get(0));
-            orderFragment.hideEmptyView();
-        }
-        else{
-            orderFragment.showEmptyView();
-        }
+    @Override
+    protected void setFragments() {
+        listFragment = (OrdersFragment) getFragmentManager().findFragmentById(R.id.fragmentOrders);
+        detailsFragment = (OrderDetailsFragment) getFragmentManager().findFragmentById(R.id.fragmentOrder);
     }
+
+    @Override
+    protected void startDetailsActivity(Payment payment) {
+        Intent intent = new Intent(getApplicationContext(), OrderDetailsActivity.class);
+        intent.putExtra(PaymentDetailsActivity.PAYMENT_ID, payment.getId());
+        startActivity(intent);
+        finish();
+    }
+
 }

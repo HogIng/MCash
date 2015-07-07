@@ -103,5 +103,9 @@ public class LoginActivity extends Activity {
         return false;
     }
 
+    @Override
+    public void onBackPressed(){
+        finish();
+    }
 
 }

@@ -1,35 +1,34 @@
 package com.example.inga.mcash.activitiy;
 
-import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
+import android.util.DisplayMetrics;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.inga.mcash.MenuItem;
 import com.example.inga.mcash.R;
 import com.example.inga.mcash.fragment.SlidingMenuFragment;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
 
-import java.util.ArrayList;
 
 /**
  * Created by Inga on 22.03.2015.
  */
 public abstract class BaseActivity extends SlidingFragmentActivity {
 
-    public SlidingMenuFragment mFrag;
-    public SlidingMenu sm;
+    private SlidingMenuFragment mFrag;
+    private SlidingMenu sm;
 
     @Override
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
         setContentView(getLayoutResourceId());
+
         if (screenIsLarge()) {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         }
@@ -83,12 +82,14 @@ public abstract class BaseActivity extends SlidingFragmentActivity {
     }
 
     public boolean screenIsLarge() {
-        if ((getResources().getConfiguration().screenLayout &
-                Configuration.SCREENLAYOUT_SIZE_MASK) >=
-                Configuration.SCREENLAYOUT_SIZE_LARGE) {
-            return true;
-        }
-        return false;
+        DisplayMetrics dM = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(dM);
+        int widthPixels = dM.widthPixels;
+        int heightPixels = dM.heightPixels;
+        float scaleFactor = dM.density;
+        float widthDP = widthPixels/scaleFactor;
+        float heightDP = heightPixels/scaleFactor;
+        return (widthDP>= 600 && heightDP >= 600);
     }
 
 }
