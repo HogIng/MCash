@@ -64,15 +64,27 @@ public class LoginActivity extends Activity {
         commodityDataSource.open();
         commodityDataSource.createCommodity("Getränke", "", 0, 0, 1,null);
         commodityDataSource.createCommodity("Kaffeegetränke", "", 0, 1, 1,null);
-        commodityDataSource.createCommodity("Cappuccino", "cappuccino", 280, 2, 0,"00457217");
-        commodityDataSource.createCommodity("Fruchtshakes", "fruchtshakes", 0, 1, 1,null);
-        commodityDataSource.createCommodity("Schokoladenkuchen", "schokokuchen", 325, 0, 0,"84690029");
-        commodityDataSource.createCommodity("Grüner Smoothie", "smoothie_gruen", 250, 4, 0,"06300036");
-        commodityDataSource.createCommodity("Smootie Rotebeete", "smoothie_rotebeete", 275, 4, 0,"51700041");
-        commodityDataSource.createCommodity("Latte Macchiato", "lattemacchiato", 295, 2, 0,"62877053");
-        commodityDataSource.createCommodity("Esspresso", "esspresso", 195, 2, 0,"01083064");
+        commodityDataSource.createCommodity("Fruchtshakes", "", 0, 1, 1,null);
+        commodityDataSource.createCommodity("Kuchen", "", 0, 0, 1,null);
+
         commodityDataSource.createCommodity("Erdnüsse", "erdnuesse", 200, 0, 0,"21030079");
+        commodityDataSource.createCommodity("Bagel", "bagel", 325, 0, 0,"84690029");
+
         commodityDataSource.createCommodity("Tee versch. Sorten", "tee", 180, 1, 0,"90650086");
+
+        commodityDataSource.createCommodity("Cappuccino", "cappuccino", 280, 2, 0,"00457217");
+        commodityDataSource.createCommodity("Kaffee", "kaffee", 170, 2, 0,"62877053");
+        commodityDataSource.createCommodity("Espresso", "espresso", 195, 2, 0,"01083064");
+
+        commodityDataSource.createCommodity("Grüner Smoothie", "smoothie_gruen", 250, 3, 0,"06300036");
+        commodityDataSource.createCommodity("Smootie Waldbeere", "smoothie_waldbeeren", 275, 3, 0,"51700041");
+
+        commodityDataSource.createCommodity("Schokokuchen", "schokokuchen", 320, 4, 0,"62877053");
+        commodityDataSource.createCommodity("Nusskuchen", "nusskuchen", 295, 4, 0,"01083064");
+        commodityDataSource.createCommodity("Honigkuchen", "honigkuchen", 165, 4, 0,"21030079");
+        commodityDataSource.createCommodity("Orangenkuchen", "orangenkuchen", 180, 4, 0,"90650086");
+        commodityDataSource.createCommodity("Windbeutel", "windbeutel", 80, 4, 0,"90650086");
+
         commodityDataSource.close();
         CashierDataSource cashierDataSource = new CashierDataSource(this);
         cashierDataSource.open();
@@ -87,6 +99,7 @@ public class LoginActivity extends Activity {
             CashierDataSource cashierDataSource = new CashierDataSource(getApplicationContext());
             cashierDataSource.open();
             cashier = cashierDataSource.getCashierById(id);
+            cashierDataSource.close();
             if (cashier != null && cashier.getPw().equalsIgnoreCase(pw)) {
                 return true;
             }

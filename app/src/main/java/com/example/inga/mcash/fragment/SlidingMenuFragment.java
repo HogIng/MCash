@@ -33,10 +33,10 @@ import java.util.ArrayList;
         View view = inflater.inflate(R.layout.slidingmenu, container, false);
 
         items = new ArrayList<>();
-        items.add(new MenuItem(getString(R.string.title_products),""));
-        items.add(new MenuItem(getString(R.string.orders),""));
-        items.add(new MenuItem(getString(R.string.title_payments),""));
-        items.add(new MenuItem(getString(R.string.logout),""));
+        items.add(new MenuItem(getString(R.string.title_products),"products"));
+        items.add(new MenuItem(getString(R.string.orders),"orders"));
+        items.add(new MenuItem(getString(R.string.title_payments),"payments"));
+        items.add(new MenuItem(getString(R.string.logout),"logout"));
 
         MenuItemAdapter adapter = new MenuItemAdapter(getActivity(),R.layout.menu_item,items);
         ListView listView = (ListView) view.findViewById(R.id.listView_menu);

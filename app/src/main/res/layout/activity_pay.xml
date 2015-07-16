@@ -15,7 +15,7 @@
         android:layout_centerHorizontal="true" />
 
     <RelativeLayout
-        android:layout_width="600dp"
+        android:layout_width="@dimen/payment_dialog_width"
         android:layout_height="wrap_content"
         android:background="#ffffff"
         android:padding="4dp"
@@ -34,7 +34,8 @@
             android:layout_margin="10dp"
             android:text="@string/complete_payment"
             android:textAppearance="@android:style/TextAppearance.Medium"
-            android:textColor="@color/grey_dark" />
+            android:textColor="@color/grey_dark"
+            android:textSize="@dimen/text_size" />
 
         <RelativeLayout
             android:id="@+id/linearLayout6"
@@ -43,7 +44,8 @@
             android:layout_below="@id/textView_header"
             android:layout_centerHorizontal="true"
             android:background="#ececec"
-            android:layout_gravity="center">
+            android:layout_gravity="center"
+            android:gravity="center_horizontal">
 
             <Button
                 android:id="@+id/button_change"
@@ -71,7 +73,7 @@
                 android:layout_marginTop="40dp" />
 
             <RelativeLayout
-                android:layout_width="300dp"
+                android:layout_width="@dimen/payment_dialog_inner_width"
                 android:layout_height="wrap_content"
                 android:layout_alignStart="@+id/textView5"
                 android:layout_marginTop="40dp"
@@ -86,7 +88,9 @@
                     android:id="@+id/textView5"
                     android:visibility="visible"
                     android:layout_centerVertical="true"
-                    android:layout_alignParentLeft="true" />
+                    android:layout_alignParentLeft="true"
+                    android:textIsSelectable="false"
+                    android:textSize="@dimen/text_size" />
 
                 <TextView
                     android:id="@+id/textView_amount"
@@ -95,22 +99,13 @@
                     android:text="@string/label_null_€"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:textColor="#ff4c4c4c"
-                    android:textSize="35sp"
+                    android:textSize="@dimen/text_size_amount"
                     android:layout_alignParentRight="true" />
 
-                <FrameLayout
-                    android:layout_width="200dp"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_toRightOf="@+id/textView5"
-                    android:layout_toEndOf="@+id/textView5"
-                    android:id="@+id/frameLayout4">
-
-                </FrameLayout>
             </RelativeLayout>
 
             <RelativeLayout
-                android:layout_width="300dp"
+                android:layout_width="@dimen/payment_dialog_inner_width"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/relativeLayout2"
                 android:layout_centerHorizontal="true"
@@ -125,11 +120,11 @@
                     android:id="@+id/textView4"
                     android:layout_centerVertical="true"
                     android:layout_alignParentLeft="true"
-                    android:layout_marginRight="20dp" />
+                    android:textSize="@dimen/text_size" />
 
 
                     <EditText
-                        android:layout_width="100dp"
+                        android:layout_width="110dp"
                         android:layout_height="wrap_content"
                         android:id="@+id/editText_cash"
                         android:layout_alignParentRight="true"
@@ -142,26 +137,24 @@
                         android:text="@string/label_null_€"
                         android:textAppearance="?android:attr/textAppearanceLarge"
                         android:textColor="#ff4c4c4c"
-                        android:textSize="35sp"
+                        android:textSize="@dimen/text_size_amount"
                         android:layout_alignParentRight="true"
                         android:visibility="gone" />
             </RelativeLayout>
 
             <FrameLayout
-                android:layout_width="match_parent"
+                android:layout_width="@dimen/payment_dialog_inner_width"
                 android:layout_height="1dp"
                 android:background="@color/grey_dark"
                 android:layout_below="@+id/relativeLayout3"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
                 android:layout_marginTop="30dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
                 android:id="@+id/frameLayout_divider"
-                android:visibility="gone"></FrameLayout>
+                android:visibility="gone"
+                android:layout_centerHorizontal="true"
+                android:foregroundGravity="center_horizontal"/>
 
             <RelativeLayout
-                android:layout_width="300dp"
+                android:layout_width="@dimen/payment_dialog_inner_width"
                 android:layout_height="wrap_content"
                 android:id="@+id/relativeLayout_change"
                 android:visibility="gone"
@@ -176,7 +169,7 @@
                     android:text="@string/label_null_€"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:textColor="@color/red"
-                    android:textSize="35sp"
+                    android:textSize="@dimen/text_size_amount"
                     android:layout_gravity="center_vertical"
                     android:visibility="visible"
                     android:layout_centerVertical="true"
@@ -191,7 +184,8 @@
                     android:id="@+id/textView6"
                     android:layout_centerVertical="true"
                     android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true" />
+                    android:layout_alignParentStart="true"
+                    android:textSize="@dimen/text_size" />
 
             </RelativeLayout>
 

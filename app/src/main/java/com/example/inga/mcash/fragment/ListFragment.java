@@ -26,13 +26,13 @@ import java.util.Date;
  */
 public abstract class ListFragment extends Fragment {
 
-    protected PaymentListViewAdapter adapter;
-    protected ArrayList<Payment> payments;
-    protected ArrayList<Payment> paymentsSelected;
-    protected Calendar calendar;
-    protected TextView textViewDay;
-    protected Button buttonNext;
-    protected View view;
+    private PaymentListViewAdapter adapter;
+    private ArrayList<Payment> payments;
+    private ArrayList<Payment> paymentsSelected;
+    private Calendar calendar;
+    private TextView textViewDay;
+    private Button buttonNext;
+    private View view;
     private View selectedListView;
     private ArrayList<ListFragmentListener> listeners;
 
@@ -47,6 +47,7 @@ public abstract class ListFragment extends Fragment {
         calendar.setTime(new Date());
         paymentsSelected = new ArrayList<>();
         textViewDay = (TextView) view.findViewById(R.id.textViewDay);
+
         ListView listView = (ListView) view.findViewById(R.id.listView_payments);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -59,11 +60,9 @@ public abstract class ListFragment extends Fragment {
                 selectedListView.setBackgroundColor(getResources().getColor(R.color.grey_light_background));
                 v.setBackgroundColor(getResources().getColor(R.color.grey_background));
                 selectedListView = v;
-
                 for (ListFragmentListener listener : listeners) {
                     listener.onListItemSelected(payment);
                 }
-
             }
         });
 

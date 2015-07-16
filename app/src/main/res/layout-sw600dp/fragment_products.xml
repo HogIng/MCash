@@ -4,7 +4,7 @@
     android:layout_height="fill_parent"
     android:gravity="center_horizontal"
     android:background="@color/grey_light_background"
-    android:padding="12dp">
+    android:padding="@dimen/activity_margin">
 
     <GridView
         android:layout_width="wrap_content"

@@ -27,29 +27,8 @@ public abstract class ListActivity extends BaseActivity implements ListFragmentL
         super.onCreate(savedInstanceState);
 
         setFragments();
+
         listFragment.addListener(this);
-        ListView listView = (ListView) findViewById(R.id.listView_payments);
-        final PaymentListViewAdapter paymentListViewAdapter =(PaymentListViewAdapter) listView.getAdapter();
-
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapter, View v, int position,
-                                    long arg3) {
-                Payment payment = (Payment) adapter.getItemAtPosition(position);
-                if (detailsFragment != null) {
-                    if(selectedView == null){
-                        selectedView = paymentListViewAdapter.getFirstView();
-                    }
-                    selectedView.setBackgroundColor(getResources().getColor(R.color.grey_light_background));
-                    v.setBackgroundColor(getResources().getColor(R.color.grey_background));
-                    selectedView = v;
-                    detailsFragment.setPayment(payment);
-                } else {
-                    startDetailsActivity(payment);
-                }
-
-            }
-        });
 
         if(detailsFragment!=null){
             if(listFragment.getPaymentsSelected().size()==0){
@@ -104,11 +83,15 @@ public abstract class ListActivity extends BaseActivity implements ListFragmentL
 
     @Override
     public void onListItemSelected(Payment payment){
-        if (detailsFragment != null) {
+        if (detailsFragmentIncluded()) {
             detailsFragment.setPayment(payment);
         } else {
             startDetailsActivity(payment);
         }
+    }
+
+    private boolean detailsFragmentIncluded(){
+        return (detailsFragment != null);
     }
 
 }
