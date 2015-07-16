@@ -31,7 +31,7 @@ public class LoginActivity extends Activity {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         }
 
-//        updateDB();
+        updateDB();
 
         Button buttonLogin = (Button) findViewById(R.id.button1);
         buttonLogin.setOnClickListener(new View.OnClickListener() {

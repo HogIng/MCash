@@ -33,6 +33,7 @@ public abstract class BaseActivity extends SlidingFragmentActivity {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         }
 
+
         setBehindContentView(R.layout.slidingmenu);
         if (bundle == null) {
             FragmentTransaction t = this.getSupportFragmentManager().beginTransaction();

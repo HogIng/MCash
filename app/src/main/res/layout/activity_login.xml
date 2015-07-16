@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.project_c.LoginActivity"
-    android:background="@color/grey_light_background">
+    android:background="@color/grey_light_background"
+    android:fitsSystemWindows="true">
 
     <LinearLayout
         android:layout_width="wrap_content"
